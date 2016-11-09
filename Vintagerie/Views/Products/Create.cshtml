@@ -1,0 +1,34 @@
+﻿@using System.Web.UI.WebControls
+@model Vintagerie.ViewModels.ProductFormViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add a product</h2>
+
+@using (Html.BeginForm("SaveOrEdit","Products"))
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.Product.ProductName)
+                @Html.TextBoxFor(m => m.Product.ProductName, new { @class="form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Product.ProductDescription)
+                @Html.TextBoxFor(m => m.Product.ProductDescription, new { @class = "form-control" })
+
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ProductCategoryId)
+                @Html.DropDownListFor(m => m.ProductCategoryId, new SelectList(Model.ProductCategory, "Id", "Name"), " ", new {@class = "form-control"})
+
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Product.ProductPrice)
+                @Html.TextBoxFor(m => m.Product.ProductPrice, new {@class = "form-control"})
+
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+}

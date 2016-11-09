@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -189,6 +190,14 @@
     <Compile Include="Migrations\201611081907109_addCategories.Designer.cs">
       <DependentUpon>201611081907109_addCategories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611091002111_Rename_AddForeignKeys.cs" />
+    <Compile Include="Migrations\201611091002111_Rename_AddForeignKeys.Designer.cs">
+      <DependentUpon>201611091002111_Rename_AddForeignKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611091005093_addRequiredToCategory.cs" />
+    <Compile Include="Migrations\201611091005093_addRequiredToCategory.Designer.cs">
+      <DependentUpon>201611091005093_addRequiredToCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -198,6 +207,7 @@
     <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ProductFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -254,6 +264,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -278,6 +289,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611081907109_addCategories.resx">
       <DependentUpon>201611081907109_addCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611091002111_Rename_AddForeignKeys.resx">
+      <DependentUpon>201611091002111_Rename_AddForeignKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611091005093_addRequiredToCategory.resx">
+      <DependentUpon>201611091005093_addRequiredToCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

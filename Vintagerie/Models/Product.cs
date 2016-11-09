@@ -7,8 +7,11 @@ namespace Vintagerie.Models
     {
         public int Id { get; set; }
 
-        [Required]
+       
         public ApplicationUser User { get; set; }
+
+        [Required]
+        public string UserId { get; set; }
 
         [Required]
         public string ProductName { get; set; }
@@ -20,9 +23,13 @@ namespace Vintagerie.Models
 
         public int ProductLikes { get; set; }
 
-        public DateTime TimeAdde { get; set; }
+        public DateTime TimeAdded { get; set; }
+
+        
+        public ProductCategory ProductCategory { get; set; }
 
         [Required]
-        public ProductCategory Category { get; set; }
+        public byte ProductCategoryId  { get; set; }
+
     }
 }
