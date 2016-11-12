@@ -8,27 +8,40 @@
 
 <h2>Add a product</h2>
 
-@using (Html.BeginForm("SaveOrEdit","Products"))
-        {
-            <div class="form-group">
-                @Html.LabelFor(m => m.Product.ProductName)
-                @Html.TextBoxFor(m => m.Product.ProductName, new { @class="form-control" })
-            </div>
+@using (Html.BeginForm("SaveOrEdit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(m => m.Product.ProductName)
+        @Html.TextBoxFor(m => m.Product.ProductName, new { @class = "form-control" })
+    </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Product.ProductDescription)
                 @Html.TextBoxFor(m => m.Product.ProductDescription, new { @class = "form-control" })
-
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.ProductCategoryId)
-                @Html.DropDownListFor(m => m.ProductCategoryId, new SelectList(Model.ProductCategory, "Id", "Name"), " ", new {@class = "form-control"})
-
+                @Html.DropDownListFor(m => m.ProductCategoryId, new SelectList(Model.ProductCategory, "Id", "Name"), " ", new { @class = "form-control" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Product.ProductPrice)
-                @Html.TextBoxFor(m => m.Product.ProductPrice, new {@class = "form-control"})
-
+                @Html.TextBoxFor(m => m.Product.ProductPrice, new { @class = "form-control" })
             </div>
+
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.File, new {type = "file"})
+        @Html.ValidationMessageFor(m => m.File)
+    </div>
+
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.File, new {type = "file"})
+        @Html.ValidationMessageFor(m => m.File)
+    </div>
+
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.File, new { type = "file" })
+        @Html.ValidationMessageFor(m => m.File)
+    </div>
             <button type="submit" class="btn btn-primary">Save</button>
 }

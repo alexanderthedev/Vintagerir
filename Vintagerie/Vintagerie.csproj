@@ -198,13 +198,35 @@
     <Compile Include="Migrations\201611091005093_addRequiredToCategory.Designer.cs">
       <DependentUpon>201611091005093_addRequiredToCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611091502418_removeRequires.cs" />
+    <Compile Include="Migrations\201611091502418_removeRequires.Designer.cs">
+      <DependentUpon>201611091502418_removeRequires.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611091504525_addRequiredPartA.cs" />
+    <Compile Include="Migrations\201611091504525_addRequiredPartA.Designer.cs">
+      <DependentUpon>201611091504525_addRequiredPartA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611101801511_AddPictureTables.cs" />
+    <Compile Include="Migrations\201611101801511_AddPictureTables.Designer.cs">
+      <DependentUpon>201611101801511_AddPictureTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611101923540_ChangeUSerIdTostringForPictureInfo.cs" />
+    <Compile Include="Migrations\201611101923540_ChangeUSerIdTostringForPictureInfo.Designer.cs">
+      <DependentUpon>201611101923540_ChangeUSerIdTostringForPictureInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611121913513_AddUserName.cs" />
+    <Compile Include="Migrations\201611121913513_AddUserName.Designer.cs">
+      <DependentUpon>201611121913513_AddUserName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductCategory.cs" />
+    <Compile Include="Models\PIctureInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ProductFormViewModel.cs" />
@@ -212,6 +234,12 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\1269269166.jpg" />
+    <Content Include="Content\images\aboutUsImage.jpg" />
+    <Content Include="Content\images\dubai.jpg" />
+    <Content Include="Content\images\exxonmobil.jpg" />
+    <Content Include="Content\images\gild.jpg" />
+    <Content Include="Content\images\hotelImages.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -265,6 +293,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\AddImages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -295,6 +324,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611091005093_addRequiredToCategory.resx">
       <DependentUpon>201611091005093_addRequiredToCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611091502418_removeRequires.resx">
+      <DependentUpon>201611091502418_removeRequires.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611091504525_addRequiredPartA.resx">
+      <DependentUpon>201611091504525_addRequiredPartA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611101801511_AddPictureTables.resx">
+      <DependentUpon>201611101801511_AddPictureTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611101923540_ChangeUSerIdTostringForPictureInfo.resx">
+      <DependentUpon>201611101923540_ChangeUSerIdTostringForPictureInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611121913513_AddUserName.resx">
+      <DependentUpon>201611121913513_AddUserName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
