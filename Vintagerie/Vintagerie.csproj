@@ -52,12 +52,24 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -167,10 +179,15 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\LikesController.cs" />
+    <Compile Include="Controllers\Api\LovesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Dtos\LikeDtio.cs" />
+    <Compile Include="Dtos\LoveDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -218,10 +235,28 @@
     <Compile Include="Migrations\201611121913513_AddUserName.Designer.cs">
       <DependentUpon>201611121913513_AddUserName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611131052563_AddUsernameProductNameTOpictureInfos.cs" />
+    <Compile Include="Migrations\201611131052563_AddUsernameProductNameTOpictureInfos.Designer.cs">
+      <DependentUpon>201611131052563_AddUsernameProductNameTOpictureInfos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611141841096_CreateLikes.cs" />
+    <Compile Include="Migrations\201611141841096_CreateLikes.Designer.cs">
+      <DependentUpon>201611141841096_CreateLikes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611152003207_AddLovesToUsers.cs" />
+    <Compile Include="Migrations\201611152003207_AddLovesToUsers.Designer.cs">
+      <DependentUpon>201611152003207_AddLovesToUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611152032450_addLoveClassAndDto.cs" />
+    <Compile Include="Migrations\201611152032450_addLoveClassAndDto.Designer.cs">
+      <DependentUpon>201611152032450_addLoveClassAndDto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\LikeUserToProduct.cs" />
+    <Compile Include="Models\LovesUserToStore.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Product.cs" />
@@ -229,6 +264,9 @@
     <Compile Include="Models\PIctureInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AllStoresViewModel.cs" />
+    <Compile Include="ViewModels\HomePageViewModel.cs" />
+    <Compile Include="ViewModels\MyProductsViewModel.cs" />
     <Compile Include="ViewModels\ProductFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -294,6 +332,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Views\Products\AddImages.cshtml" />
+    <Content Include="Views\Products\MyProducts.cshtml" />
+    <Content Include="Views\Home\AllStores.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -339,6 +379,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611121913513_AddUserName.resx">
       <DependentUpon>201611121913513_AddUserName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611131052563_AddUsernameProductNameTOpictureInfos.resx">
+      <DependentUpon>201611131052563_AddUsernameProductNameTOpictureInfos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611141841096_CreateLikes.resx">
+      <DependentUpon>201611141841096_CreateLikes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611152003207_AddLovesToUsers.resx">
+      <DependentUpon>201611152003207_AddLovesToUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611152032450_addLoveClassAndDto.resx">
+      <DependentUpon>201611152032450_addLoveClassAndDto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

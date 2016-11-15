@@ -1,12 +1,68 @@
-﻿@using Vintagerie.Models
-@model IEnumerable<Vintagerie.Models.Product>
+﻿@model Vintagerie.ViewModels.HomePageViewModel
+
 @{
     ViewBag.Title = "Home Page";
 }
 
 <ul>
-    @foreach (var Product in Model)
+    @foreach (var product in Model.Product)
     {
-        <li>@Product.ProductName - @Product.User.Name</li>
-    }
+        <li>
+            store name : @product.User.Name <br/>
+            store loves : @product.User.Loves <br/>
+            
+            Category: @product.ProductCategory.Name<br />
+            Name: @product.ProductName<br />
+            Description: @product.ProductDescription<br />
+            Price: @product.ProductPrice<br />
+            Added: @product.TimeAdded <br />
+
+            Likes: <span class="productLikes">@product.ProductLikes</span> <br />
+            <h2>Images</h2>
+            <ul>
+                @foreach (var pic in (Model.Picture).Where(p => p.ProductId == product.Id))
+                {
+                    <li>@pic.ImageName</li>
+                    <img src="../../Content/images/@pic.UserName/@pic.ProductName/@pic.ImageName" />
+                }
+            </ul>
+
+
+
+            <hr />
+            @{ var isLiked = Model.Likes.Any(a => a.ProductLikedId == @product.Id) ? "Liked" : "Like it?";  }
+
+            <button data-productId="@product.Id" class="js-likeDis">@isLiked</button>
+        </li>
+                }
 </ul>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $(".js-likeDis").click(function(e) {
+                var button = $(e.target);
+                $.post("/api/likes", { pId: button.attr("data-productId")})
+                    .done(function () {
+                        var takeVal = button.parent().find(".productLikes").text();
+                        if (button.text() === "Liked") {
+                            button.text("Like it?");
+                            parseInt(takeVal);
+                            takeVal--;
+                            button.parent().find(".productLikes").text(takeVal);
+                        } else {
+                            button.text("Liked");
+                            parseInt(takeVal);
+                            takeVal++;
+                            button.parent().find(".productLikes").text(takeVal);
+                        }
+                    })
+                    .fail(function() {
+                        alert("Something went wrong");
+                    });
+
+            });
+        })
+    </script>
+}

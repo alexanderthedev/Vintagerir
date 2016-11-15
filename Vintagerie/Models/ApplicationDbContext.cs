@@ -9,7 +9,10 @@ namespace Vintagerie.Models
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<PictureInfo> PIctureInfos { get; set; }
 
-        public ApplicationDbContext()
+        public DbSet<LikeUserToProduct> Likes { get; set; }
+        public DbSet<LovesUserToStore> Loves { get; set; }
+
+        public ApplicationDbContext() 
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
@@ -17,6 +20,22 @@ namespace Vintagerie.Models
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<LikeUserToProduct>()
+                .HasRequired(u => u.Liker)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+
+            modelBuilder.Entity<LovesUserToStore>()
+                .HasRequired(u => u.LoverUser)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using System;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -49,7 +50,8 @@ namespace Vintagerie.Controllers
                 ProductDescription = productViewModel.Product.ProductDescription,
                 ProductPrice = productViewModel.Product.ProductPrice,
                 ProductLikes = 0,
-                ProductCategoryId = productViewModel.ProductCategoryId
+                ProductCategoryId = productViewModel.ProductCategoryId,
+                
             };
 
             _context.Products.Add(product);
@@ -60,7 +62,9 @@ namespace Vintagerie.Controllers
 
             StringBuilder direCtorybuilder = new StringBuilder();
 
-            var productDirectory = direCtorybuilder.Append("~/Content/images/").Append(User.Identity.GetUserId()).Append("/").Append(product.ProductName).ToString();
+            var userId = User.Identity.GetUserId();
+            var usersStoreName= _context.Users.Single(user => user.Id == userId);
+            var productDirectory = direCtorybuilder.Append("~/Content/images/").Append(usersStoreName.Name).Append("/").Append(product.ProductName).ToString();
 
             if (!Directory.Exists(productDirectory))
             {
@@ -70,29 +74,31 @@ namespace Vintagerie.Controllers
             var orderNum = 0;
             foreach (var file in productViewModel.File)
             {
-                var filename = Path.GetFileName(file.FileName);
+                var filename = Path.GetFileName(file?.FileName);
                 if (filename != null)
                 {
                     var path = Path.Combine(Server.MapPath(productDirectory), filename);
                     file.SaveAs(path);
+
+                    var image = new PictureInfo
+                    {
+                        Id = Guid.NewGuid(),
+                        ProductId = product.Id,
+                        UserId = product.UserId,
+                        OrderNumber = orderNum,
+                        ImageName = file.FileName,
+                        IsFeautured = orderNum == 0 ? true : false,
+                        DateAdded = DateTime.Now,
+                        UserName = usersStoreName.Name,
+                        ProductName = product.ProductName
+                    };
+
+                    _context.PIctureInfos.Add(image);
+
+                    _context.SaveChanges();
                 }
 
-                var image = new PictureInfo
-                {
-                    Id = Guid.NewGuid(),
-                    ProductId = product.Id,
-                    UserId = product.UserId,
-                    OrderNumber = orderNum,
-                    ImageName = file.FileName,
-                    IsFeautured = orderNum == 0 ?  true : false,
-                     DateAdded = DateTime.Now
-                };
 
-                _context.PIctureInfos.Add(image);
-
-                _context.SaveChanges();
-
-              
                 orderNum++;
 
             }
@@ -107,24 +113,26 @@ namespace Vintagerie.Controllers
         public ActionResult AddImages()
         {
             return View();
+   
         }
 
-       /* [HttpPost]
-        public ActionResult UploadImages(Picture picture)
+        public ActionResult MyProducts()
         {
 
-            foreach (var file in picture.Files) { 
-                var filename = Path.GetFileName(file.FileName);
-                if (filename != null)
-                {
-                    var path = Path.Combine(Server.MapPath("~/Content/images/"), filename);
-                    file.SaveAs(path);
-                }
-            }
-               
+            
+            var currentUserId = User.Identity.GetUserId();
+            var user = _context.Users.Single(u => u.Id == currentUserId);
+            var products = _context.Products.Where(m => m.UserId == currentUserId).Include(p => p.User).Include(c => c.ProductCategory).ToList();
+            var pictures = _context.PIctureInfos.Where(m => m.UserId == currentUserId).ToList();
 
+            var MyProducts = new MyProductsViewModel
+            {
+                Product = products,
+                Picture = pictures,
+                Users = user
+            };
 
-            return RedirectToAction("Index","Home");
-        }*/
+            return View(MyProducts);
+        }
     }
 }

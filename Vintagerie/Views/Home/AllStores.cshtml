@@ -1,0 +1,55 @@
+﻿@model Vintagerie.ViewModels.AllStoresViewModel
+@{
+    ViewBag.Title = "All stores";
+}
+
+<h2>AllStores</h2>
+<ul>
+    @foreach (var store in Model.Stores)
+    {
+
+        <li>
+            name : @store.Name<br/>
+            Loves :<span class="uLoves">@store.Loves</span><br>
+
+            @{ var isLoved = Model.Loves.Any(a => a.LovedId == @store.Id) ? "Loved" : "Love me?";  }
+
+            <button data-uId="@store.Id" class="js-loveDis">@isLoved</button>
+        </li>
+
+        <hr />
+
+    }
+</ul>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $(".js-loveDis").click(function (e) {
+                
+                var button = $(e.target);
+                $.post("/api/loves", { Uid: button.attr("data-uId") })
+                    .done(function () {
+                        console.log("done");
+                        var takeVal = button.parent().find(".uLoves").text();
+                        if (button.text() === "Loved") {
+                            button.text("Love me?");
+                            parseInt(takeVal);
+                            takeVal--;
+                            button.parent().find(".uLoves").text(takeVal);
+                        } else {
+                            button.text("Loved");
+                            parseInt(takeVal);
+                            takeVal++;
+                            button.parent().find(".uLoves").text(takeVal);
+                        }
+                    })
+                    .fail(function () {
+                        window.Location = "/Account/Register";
+                    });
+
+            });
+        })
+    </script>
+}

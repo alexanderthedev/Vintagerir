@@ -1,0 +1,17 @@
+﻿@model Vintagerie.ViewModels.MyProductsViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>My products</h2>
+
+<ul>
+    @foreach (var product in Model.Product)
+    {
+        <li>@product.ProductName</li>
+
+    }
+</ul>
+
+<h2>My profile</h2>
