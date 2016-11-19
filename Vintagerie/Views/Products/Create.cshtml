@@ -48,7 +48,8 @@
     {
         foreach (var pic in Model.PictureInfo)
         {
-            <img src="../..@pic.Path" />
+            <img src="../..@pic.Path"/>
+            <button id="js-delete" data-imgId="@pic.Id">Delete me</button>
 
         }
     }
@@ -59,4 +60,15 @@
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function() {
+            $(".js-delete").click(function(e) {
+
+                var button = $(e.target);
+
+
+            });
+        })
+    </script>
 }

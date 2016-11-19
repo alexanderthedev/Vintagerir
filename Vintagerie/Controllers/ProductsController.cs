@@ -102,9 +102,10 @@ namespace Vintagerie.Controllers
                 {
                     var path = Path.Combine(Server.MapPath(productDirectory), filename);
                     file.SaveAs(path);
+                    StringBuilder imageBuilder = new StringBuilder();
 
-                    var imagePath = 
-                        direCtorybuilder
+                    var imagePath =
+                        imageBuilder
                         .Append("/content/images/")
                         .Append(usersStoreName.Name)
                         .Append("/")
@@ -157,6 +158,36 @@ namespace Vintagerie.Controllers
             };
 
             return View(myProducts);
+        }
+
+
+    
+        public ActionResult DeleteProduct(int id)
+        {
+
+            var currentUser = User.Identity.GetUserId();
+
+            var product = _context.Products.Include("User").Single(p => p.Id == id && p.User.Id == currentUser);
+            var user = _context.Users.Single(u => u.Id == currentUser);
+
+            DeleteFolder(product, user);
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+
+           
+
+            return RedirectToAction("MyProducts");
+        }
+
+
+        public void DeleteFolder(Product product, ApplicationUser user)
+        {
+            StringBuilder direCtorybuilder = new StringBuilder();
+
+            var productDirectory = direCtorybuilder.Append("~/content/images/").Append(user.Name).Append("/").Append(product.ProductName).ToString();
+
+                Directory.Delete(Server.MapPath(productDirectory), true);
+            
         }
 
         public ActionResult EditProduct(int id)

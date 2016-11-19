@@ -11,6 +11,8 @@
     {
         <li>@product.ProductName</li>
         @Html.ActionLink("Edit","EditProduct","Products",new {id = product.Id},null)
+        <br/>
+        @Html.ActionLink("Delete","DeleteProduct","Products",new { id = product.Id} , null )
 
     }
 </ul>

@@ -13,12 +13,12 @@ namespace Vintagerie.Controllers.Api
     {
 
        
-        private readonly ApplicationDbContext _context;
+    private readonly ApplicationDbContext _context;
 
-        public LikesController()
-        {
-            _context = new ApplicationDbContext();
-        }
+    public LikesController()
+    {
+        _context = new ApplicationDbContext();
+    }
 
         [HttpPost]
         public IHttpActionResult Like(LikeDtio dto)
