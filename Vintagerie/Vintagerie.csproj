@@ -251,6 +251,10 @@
     <Compile Include="Migrations\201611152032450_addLoveClassAndDto.Designer.cs">
       <DependentUpon>201611152032450_addLoveClassAndDto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611191156355_addPathForImages.cs" />
+    <Compile Include="Migrations\201611191156355_addPathForImages.Designer.cs">
+      <DependentUpon>201611191156355_addPathForImages.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -391,6 +395,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611152032450_addLoveClassAndDto.resx">
       <DependentUpon>201611152032450_addLoveClassAndDto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611191156355_addPathForImages.resx">
+      <DependentUpon>201611191156355_addPathForImages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

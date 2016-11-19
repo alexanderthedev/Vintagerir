@@ -36,34 +36,57 @@ namespace Vintagerie.Controllers
         public ActionResult SaveOrEdit(ProductFormViewModel productViewModel)
         {
 
-            if (!ModelState.IsValid)
+
+            if (productViewModel.Product.Id == 0)
             {
-                productViewModel.ProductCategory = _context.ProductCategories.ToList();
-                return View("Create", productViewModel);
+                var product = new Product
+                {
+                    UserId = User.Identity.GetUserId(),
+                    TimeAdded = DateTime.Now,
+                    ProductName = productViewModel.Product.ProductName,
+                    ProductDescription = productViewModel.Product.ProductDescription,
+                    ProductPrice = productViewModel.Product.ProductPrice,
+                    ProductLikes = 0,
+                    ProductCategoryId = productViewModel.Product.ProductCategoryId,
+
+                };
+                _context.Products.Add(product);
+
+                AddImages(productViewModel,product);
             }
-
-            var product = new Product
+            else
             {
-                UserId = User.Identity.GetUserId(),
-                TimeAdded = DateTime.Now,
-                ProductName = productViewModel.Product.ProductName,
-                ProductDescription = productViewModel.Product.ProductDescription,
-                ProductPrice = productViewModel.Product.ProductPrice,
-                ProductLikes = 0,
-                ProductCategoryId = productViewModel.ProductCategoryId,
-                
+                var findProduct = _context.Products.Single(p => p.Id == productViewModel.Product.Id);
+
+
+                findProduct.ProductName = productViewModel.Product.ProductName;
+                findProduct.ProductDescription = productViewModel.Product.ProductDescription;
+                findProduct.ProductPrice = productViewModel.Product.ProductPrice;
+                findProduct.ProductCategoryId = productViewModel.Product.ProductCategoryId;
+
+                _context.SaveChanges();
+
+                AddImages(productViewModel, findProduct);
+
             };
-
-            _context.Products.Add(product);
-
+               
             
 
+        
 
 
+            return RedirectToAction("MyProducts","Products");
+        }
+
+
+
+
+        public void AddImages(ProductFormViewModel productViewModel,Product product)
+        {
             StringBuilder direCtorybuilder = new StringBuilder();
 
             var userId = User.Identity.GetUserId();
-            var usersStoreName= _context.Users.Single(user => user.Id == userId);
+            var usersStoreName = _context.Users.Single(user => user.Id == userId);
             var productDirectory = direCtorybuilder.Append("~/Content/images/").Append(usersStoreName.Name).Append("/").Append(product.ProductName).ToString();
 
             if (!Directory.Exists(productDirectory))
@@ -80,6 +103,16 @@ namespace Vintagerie.Controllers
                     var path = Path.Combine(Server.MapPath(productDirectory), filename);
                     file.SaveAs(path);
 
+                    var imagePath = 
+                        direCtorybuilder
+                        .Append("/content/images/")
+                        .Append(usersStoreName.Name)
+                        .Append("/")
+                        .Append(product.ProductName)
+                        .Append("/")
+                        .Append(file.FileName)
+                        .ToString();
+
                     var image = new PictureInfo
                     {
                         Id = Guid.NewGuid(),
@@ -90,7 +123,8 @@ namespace Vintagerie.Controllers
                         IsFeautured = orderNum == 0 ? true : false,
                         DateAdded = DateTime.Now,
                         UserName = usersStoreName.Name,
-                        ProductName = product.ProductName
+                        ProductName = product.ProductName,
+                        Path = imagePath
                     };
 
                     _context.PIctureInfos.Add(image);
@@ -102,20 +136,9 @@ namespace Vintagerie.Controllers
                 orderNum++;
 
             }
-            
-              
-
-
-            return RedirectToAction("Index","Home");
         }
 
-
-        public ActionResult AddImages()
-        {
-            return View();
-   
-        }
-
+       
         [Authorize]
         public ActionResult MyProducts()
         {
@@ -140,11 +163,14 @@ namespace Vintagerie.Controllers
         {
             var currentUserId = User.Identity.GetUserId();
             var currentProduct = _context.Products.Single(p => p.Id == id && p.UserId == currentUserId);
+            var getPictures = _context.PIctureInfos
+                .Where(i => i.ProductId == currentProduct.Id && i.UserId == currentUserId).ToList();
 
             var viewModel = new ProductFormViewModel
             {
                 Product = currentProduct,
-                ProductCategory = _context.ProductCategories.ToList()
+                ProductCategory = _context.ProductCategories.ToList(),
+                PictureInfo = getPictures
             };
 
 

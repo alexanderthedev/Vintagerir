@@ -25,5 +25,7 @@ namespace Vintagerie.Models
         public bool IsFeautured { get; set; }
 
         public DateTime DateAdded { get; set; }
+
+        public string Path { get; set; }
     }
 }

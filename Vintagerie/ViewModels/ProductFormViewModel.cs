@@ -9,7 +9,7 @@ namespace Vintagerie.ViewModels
        
         public Product Product { get; set; }
 
-        public PictureInfo PictureInfo { get; set; }
+        public IEnumerable<PictureInfo> PictureInfo { get; set; }
 
         public byte ProductCategoryId { get; set; }
 
