@@ -116,6 +116,7 @@ namespace Vintagerie.Controllers
    
         }
 
+        [Authorize]
         public ActionResult MyProducts()
         {
 
@@ -125,14 +126,29 @@ namespace Vintagerie.Controllers
             var products = _context.Products.Where(m => m.UserId == currentUserId).Include(p => p.User).Include(c => c.ProductCategory).ToList();
             var pictures = _context.PIctureInfos.Where(m => m.UserId == currentUserId).ToList();
 
-            var MyProducts = new MyProductsViewModel
+            var myProducts = new MyProductsViewModel
             {
                 Product = products,
                 Picture = pictures,
                 Users = user
             };
 
-            return View(MyProducts);
+            return View(myProducts);
+        }
+
+        public ActionResult EditProduct(int id)
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var currentProduct = _context.Products.Single(p => p.Id == id && p.UserId == currentUserId);
+
+            var viewModel = new ProductFormViewModel
+            {
+                Product = currentProduct,
+                ProductCategory = _context.ProductCategories.ToList()
+            };
+
+
+            return View("Create", viewModel);
         }
     }
 }
