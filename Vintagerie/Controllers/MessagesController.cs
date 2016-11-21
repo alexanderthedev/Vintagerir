@@ -50,5 +50,25 @@ namespace Vintagerie.Controllers
             return View(allMessagesOfRoom);
 
         }
+
+        [HttpPost]
+        public ActionResult SendMessage(Message message)
+        {
+            var myId = User.Identity.GetUserId();
+
+           var addMessage = new Message
+           {
+               MessageRoomId = message.MessageRoomId,
+               Content = message.Content,
+               SenderId = myId,
+               ReceiverId =  message.ReceiverId,
+               TimeSent = DateTime.Now
+           };
+
+            _context.Messages.Add(addMessage);
+            _context.SaveChanges();
+
+            return RedirectToAction("MessageRoom");
+        }
     }
 }

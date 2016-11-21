@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Vintagerie.Models.Message>    
+﻿@model IEnumerable<Vintagerie.Models.Message>
 
 @{
     ViewBag.Title = "MessageRoom";
@@ -7,9 +7,30 @@
 <h2>MessageRoom</h2>
 
 <ul>
-    @foreach (var message in Model)
+  @*  @if (Model != null)
     {
-        <li>  </li>
-    }
+          foreach (var message in Model)
+          {
+            <li>
+                sent: @message.TimeSent <br />
+                sender: @message.Sender.Name <br />
+                receiver: @message.Receiver.Name <br />
+                content: @message.Content <br />
+
+            </li>
+          }
+    }*@
+
+    
 </ul>
+
+@using (Html.BeginForm("SendMessage","Messages",FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(m => m)
+        @Html.TextAreaFor(m => m)
+    </div>
+    @Html.HiddenFor(m => m)
+
+}
 
