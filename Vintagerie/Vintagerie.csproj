@@ -186,6 +186,7 @@
     <Compile Include="Controllers\Api\PicturesInProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Dtos\LikeDtio.cs" />
     <Compile Include="Dtos\LoveDto.cs" />
@@ -256,6 +257,14 @@
     <Compile Include="Migrations\201611191156355_addPathForImages.Designer.cs">
       <DependentUpon>201611191156355_addPathForImages.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611212028349_CreateMessagesAndRooms.cs" />
+    <Compile Include="Migrations\201611212028349_CreateMessagesAndRooms.Designer.cs">
+      <DependentUpon>201611212028349_CreateMessagesAndRooms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611212102427_AddContentToMessage.cs" />
+    <Compile Include="Migrations\201611212102427_AddContentToMessage.Designer.cs">
+      <DependentUpon>201611212102427_AddContentToMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -263,6 +272,8 @@
     <Compile Include="Models\LikeUserToProduct.cs" />
     <Compile Include="Models\LovesUserToStore.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MessageRoom.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductCategory.cs" />
@@ -339,6 +350,8 @@
     <Content Include="Views\Products\AddImages.cshtml" />
     <Content Include="Views\Products\MyProducts.cshtml" />
     <Content Include="Views\Home\AllStores.cshtml" />
+    <Content Include="Views\Messages\MyMessages.cshtml" />
+    <Content Include="Views\Messages\MessageRoom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -399,6 +412,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611191156355_addPathForImages.resx">
       <DependentUpon>201611191156355_addPathForImages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611212028349_CreateMessagesAndRooms.resx">
+      <DependentUpon>201611212028349_CreateMessagesAndRooms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611212102427_AddContentToMessage.resx">
+      <DependentUpon>201611212102427_AddContentToMessage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

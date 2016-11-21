@@ -48,8 +48,11 @@
     {
         foreach (var pic in Model.PictureInfo)
         {
-            <img src="../..@pic.Path"/>
-            <button id="js-delete" data-imgId="@pic.Id">Delete me</button>
+
+            <div class="">
+                <img src="../..@pic.Path" />
+                <button id="js-delete" data-imgId="@pic.Id">Delete me</button>
+            </div>
 
         }
     }
@@ -63,9 +66,22 @@
 
     <script>
         $(document).ready(function() {
-            $(".js-delete").click(function(e) {
-
+            $("#js-delete").click(function(e) {
+                e.preventDefault();
+                console.log("delete");
                 var button = $(e.target);
+
+                $.ajax({
+                    url: '/api/PicturesInProduct/' + button.attr('data-imgId'),
+                    method: 'DELETE'
+                }).done(function() {
+
+                    button.parent().fadeOut('slow', function() {
+                        $(this).remove();
+                    });
+                }).fail(function() {
+                    console.log("fail");
+                });
 
 
             });

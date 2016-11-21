@@ -30,14 +30,18 @@ namespace Vintagerie.Controllers.Api
             var picInDb = _context.PIctureInfos.Single(p => p.Id == id && p.User.Id == currentUser);
 
             _context.PIctureInfos.Remove(picInDb);
-            _context.SaveChanges();
+            
 
             StringBuilder direCtorybuilder = new StringBuilder();
 
             var productDirectory = direCtorybuilder.Append("~").Append(picInDb.Path).ToString();
 
-            Directory.Delete(productDirectory, true);
+            string fullPath = System.Web.Hosting.HostingEnvironment.MapPath(productDirectory);
 
+
+            if (fullPath != null) File.Delete(fullPath);
+
+            _context.SaveChanges();
             return Ok();
 
         }
