@@ -1,7 +1,66 @@
-﻿@model dynamic
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<Vintagerie.Models.MessageRoom>
 
 @{
     ViewBag.Title = "My messages";
 }
 
 <h2>My messages</h2>
+
+<ul>
+    @foreach (var room in Model)
+    {
+
+
+        <li>
+        
+           
+
+
+
+            @if (@room.UserAId == User.Identity.GetUserId())
+            {
+                @("You")<br/>
+
+            }
+            else
+            {
+
+
+                @("pernos 1 :")
+                @room.UserA.Name
+                <br/>
+            }
+
+
+            @if (@room.UserBId == User.Identity.GetUserId())
+            {
+                @("You")<br/>
+
+            }
+            else
+            {
+
+                @room.UserB.Name
+                <br/>
+
+
+            }
+
+
+            @if (room.UserAId == User.Identity.GetUserId())
+            {
+                var idR = @room.UserBId;
+                <a href="/Messages/MessageRoom/@idR">View</a>
+            }
+            else
+            {
+
+                var idR = @room.UserAId;
+                <a href="/Messages/MessageRoom/@idR">View</a>
+
+            }
+        </li>
+
+    }
+</ul>

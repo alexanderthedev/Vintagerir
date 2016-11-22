@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Vintagerie.Models.Message>
+﻿@using Microsoft.AspNet.Identity
+@model Vintagerie.ViewModels.MessagesViewModel
 
 @{
     ViewBag.Title = "MessageRoom";
@@ -7,9 +8,9 @@
 <h2>MessageRoom</h2>
 
 <ul>
-  @*  @if (Model != null)
+  @if (Model.ListOfMessages != null)
     {
-          foreach (var message in Model)
+          foreach (var message in Model.ListOfMessages)
           {
             <li>
                 sent: @message.TimeSent <br />
@@ -19,18 +20,18 @@
 
             </li>
           }
-    }*@
-
-    
+    }
 </ul>
 
 @using (Html.BeginForm("SendMessage","Messages",FormMethod.Post))
 {
     <div>
-        @Html.LabelFor(m => m)
-        @Html.TextAreaFor(m => m)
+        @Html.LabelFor(m => m.SingleMessage.Content)
+        @Html.TextAreaFor(m => m.SingleMessage.Content)
     </div>
-    @Html.HiddenFor(m => m)
+    @Html.HiddenFor(m => m.ReceiverId)
+    @Html.HiddenFor(m => m.SingleMessage.MessageRoomId)
 
+    <button type="submit">send</button>
 }
 

@@ -265,6 +265,10 @@
     <Compile Include="Migrations\201611212102427_AddContentToMessage.Designer.cs">
       <DependentUpon>201611212102427_AddContentToMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611221717305_ChangesToMessages.cs" />
+    <Compile Include="Migrations\201611221717305_ChangesToMessages.Designer.cs">
+      <DependentUpon>201611221717305_ChangesToMessages.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -282,6 +286,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AllStoresViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
+    <Compile Include="ViewModels\MessagesViewModel.cs" />
     <Compile Include="ViewModels\MyProductsViewModel.cs" />
     <Compile Include="ViewModels\ProductFormViewModel.cs" />
   </ItemGroup>
@@ -418,6 +423,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611212102427_AddContentToMessage.resx">
       <DependentUpon>201611212102427_AddContentToMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611221717305_ChangesToMessages.resx">
+      <DependentUpon>201611221717305_ChangesToMessages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

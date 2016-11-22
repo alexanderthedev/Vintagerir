@@ -3,9 +3,11 @@ using System;
 using System.Linq;
 using System.Web.Mvc;
 using Vintagerie.Models;
+using Vintagerie.ViewModels;
 
 namespace Vintagerie.Controllers
 {
+    [Authorize]
     public class MessagesController : Controller
     {
 
@@ -17,9 +19,16 @@ namespace Vintagerie.Controllers
         }
 
         // GET: Messages
-        public ActionResult Index()
+        public ActionResult MyMessages()
         {
-            return View("MyMessages");
+            var myId = User.Identity.GetUserId();
+            var myRooms = _context.MessageRooms
+                .Include("UserA")
+                .Include("UserB")
+                .Where(r => r.UserAId == myId || r.UserBId == myId)
+                .ToList();
+
+            return View(myRooms);
         }
 
         public ActionResult MessageRoom(string id)
@@ -29,6 +38,8 @@ namespace Vintagerie.Controllers
 
             var ourMessageRoom = _context.MessageRooms.SingleOrDefault(r => (r.UserAId == myId || r.UserBId == myId) && (r.UserAId == id || r.UserBId == id));
 
+
+           
             if (ourMessageRoom == null)
             {
                 
@@ -42,33 +53,48 @@ namespace Vintagerie.Controllers
                 _context.SaveChanges();
             }
 
+            var allMessage = _context.Messages
+                .Include("Sender")
+                .Include("Receiver")
+                .Where(m => m.MessageRoomId == ourMessageRoom.Id )
+                .OrderBy(m => m.TimeSent);
+           
+            var viewModel = new MessagesViewModel()
+            {
+                ReceiverId = id,
+                ListOfMessages = allMessage
+            };
+            
 
-            var allMessagesOfRoom = _context.Messages.Where(m => m.MessageRoomId == ourMessageRoom.Id).ToList();
-
-
-
-            return View(allMessagesOfRoom);
+            return View(viewModel);
 
         }
 
         [HttpPost]
-        public ActionResult SendMessage(Message message)
+        public ActionResult SendMessage(MessagesViewModel message)
         {
             var myId = User.Identity.GetUserId();
+            var roomId =
+                _context.MessageRooms.Single(
+                    r =>
+                        (r.UserAId == myId || r.UserBId == myId) &&
+                        (r.UserAId == message.ReceiverId || r.UserBId == message.ReceiverId));
 
-           var addMessage = new Message
-           {
-               MessageRoomId = message.MessageRoomId,
-               Content = message.Content,
-               SenderId = myId,
-               ReceiverId =  message.ReceiverId,
-               TimeSent = DateTime.Now
-           };
+            var newMessage = new Message
+            {
+                Id = Guid.NewGuid(),
+                Content = message.SingleMessage.Content,
+                MessageRoomId = roomId.Id,
+                SenderId = myId,
+                ReceiverId = message.ReceiverId,
+                TimeSent = DateTime.Now
+                
+            };
 
-            _context.Messages.Add(addMessage);
+            _context.Messages.Add(newMessage);
             _context.SaveChanges();
 
-            return RedirectToAction("MessageRoom");
+            return RedirectToAction("MessageRoom",new {id = message.ReceiverId});
         }
     }
 }
