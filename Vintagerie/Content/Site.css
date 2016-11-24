@@ -1,6 +1,15 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿/*
+    main color = #98e2bf;
+    dark purple =#9e1c64;
+    font 1 = font-family: 'Roboto', sans-serif;
+    font 2 = font-family: 'Pacifico', cursive;
+*/
+* {
+    font-family: 'Roboto', sans-serif;
+}
+html,
+body {
+    height: 100%;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,4 +30,218 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+
+
+.navbar-fixed-top {
+    top: 40px;
+}
+
+.socialICons {
+       padding: 5px 30px 3px;
+}
+
+.topSocial {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-image: url(images/topBar.jpg);
+    background-repeat: no-repeat;
+    -ms-background-size: cover;
+    background-size: cover;
+    background-position: center center;
+    min-height: 43px;
+        z-index: 1;
+}
+
+.at-share-btn-elements a {
+    background-color: #98e2bf !important;
+}
+
+.at-share-btn-elements a:focus {
+    outline: 0;
+}
+
+    .at-share-btn-elements a:hover {
+        -webkit-transform: translateY(0px) !important;
+        -moz-transform: translateY(0px) !important;
+        -ms-transform: translateY(0px) !important;
+        -o-transform: translateY(0px) !important;
+        transform: translateY(0px) !important;
+    }
+
+
+
+.nav li a {
+    font-size: 20px;
+    color: white !important;
+    padding: 45px 20px;
+    border-bottom: 6px solid transparent;
+}
+
+.navbar {
+    border: 0;
+    background-color: #98e2bf;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+    border-color: #9e1c64;
+    background-color: transparent;
+}
+
+.mainHeader {
+    height: 100%;
+    background-image: url(images/mainBanner.jpg);
+    -ms-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.bannerContainer {
+    padding-top: 200px;
+    text-align: center;
+}
+
+.buySell {
+    font-size: 100px;
+    color: white;
+    font-family: 'Alex Brush', cursive;
+    -webkit-filter: drop-shadow(-1px 3px 2px rgba(0,0,0,0.50));
+    -moz-filter: drop-shadow(-1px 3px 2px rgba(0,0,0,0.50));
+    -o-filter: drop-shadow(-1px 3px 2px rgba(0,0,0,0.50));
+    filter: drop-shadow(-1px 3px 2px rgba(0,0,0,0.50));
+}
+
+.bannerButtons {
+       width: 30%;
+    margin: 30px auto; 
+}
+
+a:hover,
+a:focus {
+    text-decoration: none !important;
+}
+
+.learn a,
+.register a {
+    font-size: 18px;
+    color: white;
+    padding: 8% 20%;
+    background-color: #9e1c64;
+    -ms-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    -ms-box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.15)
+}
+
+.learn a {
+    color: #9e1c64;
+    background-color: #98e2bf;
+}
+
+.flowers {
+        text-align: center;
+    padding: 30px 0px;
+}
+
+.byCateogories {
+    background-image: url(images/stripesbackground.png);
+        padding: 1px;
+}
+
+.byCateogories figcaption {
+   font-family: 'Pacifico', cursive;
+    font-size: 22px;
+    text-align: center;    
+    padding: 20px 0px;
+    color: #9e1c64;
+}
+
+.myContainer {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 0px;
+    text-align: center;
+}
+
+figure img {
+    max-width: 100%;
+}
+
+.card {
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+    margin: 1%;
+    padding: 0;
+    -webkit-box-shadow: 0px 1px 3px rgba(0,0,0,0.15);
+    -ms-box-shadow: 0px 1px 3px rgba(0,0,0,0.15);
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.15);
+    -ms-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.col-md-4.card {
+    width: 30%;
+}
+
+.storeNameLoves {
+        position: absolute;
+    width: 100%;
+    text-align: left;
+    bottom: 0;
+}
+
+.filterMe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(34,34,34,0.20);
+}
+
+.loves {
+        background: #98e2bf;
+            padding: 3%;
+}
+
+.storeName {
+    font-family: 'Pacifico', cursive;
+    color: white;
+    margin: 10px;
+    font-size: 18px;
+
+}
+
+.productName {
+        width: 50%;
+    float: left;
+    font-family: 'Pacifico', cursive;
+
+}
+
+.lovesCount {
+    text-align: right;
+        font-weight: 600;
+        font-size: 18px;
+
+}
+
+.lovesCount span {
+        font-size: 18px;
+    color: #9e1c64;
+    top: 3px !important;
+}
+
+.loves a {
+    color: black;
+}
+
+.mainImg {
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
 }

@@ -6,41 +6,51 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-583702e1c0478645"></script>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Add Product", "Create", "Products")</li>
-                    <li>@Html.ActionLink("My products", "MyProducts", "Products")</li>
-                    <li>@Html.ActionLink("All stores", "AllStores", "Home")</li>
-                    <li>@Html.ActionLink("My Messages", "MyMessages", "Messages")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+<div class="topSocial">
+    <div class="socialICons pull-right">
+        <div class="addthis_inline_share_toolbox"></div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @* @Html.ActionLink("Application name", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})*@
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Create" ? "active" : "")">@Html.ActionLink("Add Product", "Create", "Products")</li>
+                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MyProducts" ? "active" : "")">@Html.ActionLink("My products", "MyProducts", "Products")</li>
+                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "AllStores" ? "active" : "")">@Html.ActionLink("All stores", "AllStores", "Home")</li>
+                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MyMessages" ? "active" : "")">@Html.ActionLink("My Messages", "MyMessages", "Messages")</li>
+            </ul>
+            @Html.Partial("_LoginPartial")
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+</div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
+
+    @RenderBody()
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
 </body>
 </html>

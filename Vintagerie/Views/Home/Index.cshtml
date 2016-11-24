@@ -3,39 +3,149 @@
 @{
     ViewBag.Title = "Home Page";
 }
+<link href="https://fonts.googleapis.com/css?family=Alex+Brush" rel="stylesheet">
 
-<ul>
-    @foreach (var product in Model.Product)
-    {
-        <li>
-            store name : @product.User.Name <br/>
-            store loves : @product.User.Loves <br/>
+<div class="mainHeader">
+
+    <div class="bannerContainer">
+        <div class="buySell">buy, sell, new, used</div>
+        <div class="logo">
+            <figure>
+                <img src="~/Content/images/logo.png" alt="La vintagerie" />
+            </figure>
+        </div>
+        <div class="bannerButtons">
+            <div class="row">
+                <div class="col-xs-6 register">
+                    <a href="/account/register">Sing Up</a>
+                </div>
+                <div class="col-xs-6 learn">
+                    <a href="/account/register">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<section class="byCateogories">
+
+    <div class="flowers">
+        <figure>
+            <img src="~/Content/images/Flowers.png" alt="Shop by categories" />
+        </figure>
+    </div>
+
+
+    <div class="row myContainer">
+        <div class="col-md-3">
+            <a href="#">
+                <figure>
+                    <img src="~/Content/images/clothing.png" alt="Clothes" />
+                    <figcaption>
+                        Clothes
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="#">
+                <figure>
+                    <img src="~/Content/images/jewelleries.png" alt="Jewelleries" />
+                    <figcaption>
+                        Jewelleries
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="#">
+                <figure>
+                    <img src="~/Content/images/home.png" alt="Home &amp; Linging" />
+                    <figcaption>
+                        Home &amp; Linging
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="#">
+                <figure>
+                    <img src="~/Content/images/toys.png" alt="Toys" />
+                    <figcaption>
+                        Toys
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+    </div>
+
+    <div class="row bannerButtons">
+        <div class="row">
+            <div class="col-xs-6 register">
+                <a href="/account/register">Sing Up</a>
+            </div>
+            <div class="col-xs-6 learn">
+                <a href="/account/register">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="bestShops">
+    <div class="flowers">
+        <figure>
+            <img src="~/Content/images/mostLoved.png" alt="Most loved shops" />
+        </figure>
+    </div>
+
+    <div class="row myContainer">
+
+        @foreach (var product in Model.Product.Take(3))
+        {
             
-            Category: @product.ProductCategory.Name<br />
-            Name: @product.ProductName<br />
-            Description: @product.ProductDescription<br />
-            Price: @product.ProductPrice<br />
-            Added: @product.TimeAdded <br />
+                
+                <div class="col-md-4 card">
+                    <figure class="mainImg">
+                        <img src="http://localhost:49559/@Model.Picture.Single(s => s.Product.Id == product.Id).Path" alt="" />
+                    </figure>   
+                    <div class="filterMe"></div>
+                    <div class="storeNameLoves">
+                        <a href="#">
+                            <div class="storeName">
+                                @product.User.Name
+                            </div>
+                        </a>
+                        <div class="loves">
+                            <a href="#">
+                                <div class="productName">@product.ProductName</div>
+                            </a>
+                            <div class="lovesCount">
+                                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> @product.User.Loves
+                            </div>
+                        </div>
+                    </div>
 
-            Likes: <span class="productLikes">@product.ProductLikes</span> <br />
-            <h2>Images</h2>
-            <ul>
-                @foreach (var pic in (Model.Picture).Where(p => p.ProductId == product.Id))
-                {
-                    <li>@pic.ImageName</li>
-                    <img src="../../Content/images/@pic.UserName/@pic.ProductName/@pic.ImageName" />
-                }
-            </ul>
+                </div>
+            
+
+
+        }
 
 
 
-            <hr />
-            @{ var isLiked = Model.Likes.Any(a => a.ProductLikedId == @product.Id) ? "Liked" : "Like it?";  }
+    </div>
+</section>
 
-            <button data-productId="@product.Id" class="js-likeDis">@isLiked</button>
-        </li>
-                }
-</ul>
+
+
+
+
+
 
 @section scripts
 {

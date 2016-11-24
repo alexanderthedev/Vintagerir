@@ -19,8 +19,12 @@ namespace Vintagerie.Controllers
 
         public ActionResult Index()
         {
-            var products = _context.Products.Include(p => p.User).Include(c => c.ProductCategory).ToList();
-            var pictures = _context.PIctureInfos.ToList();
+            var products = _context.Products
+                .Include(p => p.User)
+                .Include(c => c.ProductCategory)
+                .ToList();
+
+            var pictures = _context.PIctureInfos.Where(i => i.OrderNumber == 0).ToList();
             var users = _context.Users.ToList();
             var userId = User.Identity.GetUserId();
             var likesOfUser = _context.Likes.Where(l => l.LikerId == userId).ToList();
