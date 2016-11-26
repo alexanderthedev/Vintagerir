@@ -44,9 +44,30 @@
 
 
     @RenderBody()
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
+<footer>
+
+    <div class="footerRow">
+        <div class="col-md-3">
+            <figure>
+                <img src="/Content/images/logo.png" alt="La vintagerie" />
+            </figure>
+        </div>
+        <div class="col-md-6">
+            <div class="footerNav">
+                <ul class="footerNavBar">
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Create" ? "active" : "")">@Html.ActionLink("Add Product", "Create", "Products")</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MyProducts" ? "active" : "")">@Html.ActionLink("My products", "MyProducts", "Products")</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "AllStores" ? "active" : "")">@Html.ActionLink("All stores", "AllStores", "Home")</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MyMessages" ? "active" : "")">@Html.ActionLink("My Messages", "MyMessages", "Messages")</li>
+                </ul>
+                <div class="addthis_inline_share_toolbox"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <p class="">&copy; 2015 - @DateTime.Now.Year | La Vintagerie</p>
+</footer>
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")

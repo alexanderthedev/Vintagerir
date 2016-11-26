@@ -269,6 +269,14 @@
     <Compile Include="Migrations\201611221717305_ChangesToMessages.Designer.cs">
       <DependentUpon>201611221717305_ChangesToMessages.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611261442446_EditUserDetails.cs" />
+    <Compile Include="Migrations\201611261442446_EditUserDetails.Designer.cs">
+      <DependentUpon>201611261442446_EditUserDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611261511460_changeBoolOfWorldwide.cs" />
+    <Compile Include="Migrations\201611261511460_changeBoolOfWorldwide.Designer.cs">
+      <DependentUpon>201611261511460_changeBoolOfWorldwide.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -289,6 +297,7 @@
     <Compile Include="ViewModels\MessagesViewModel.cs" />
     <Compile Include="ViewModels\MyProductsViewModel.cs" />
     <Compile Include="ViewModels\ProductFormViewModel.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -299,6 +308,7 @@
     <Content Include="Content\images\dubai.jpg" />
     <Content Include="Content\images\exxonmobil.jpg" />
     <Content Include="Content\images\Flowers.png" />
+    <Content Include="Content\images\footerImage.jpg" />
     <Content Include="Content\images\gild.jpg" />
     <Content Include="Content\images\home.png" />
     <Content Include="Content\images\hotelImages.jpg" />
@@ -314,7 +324,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <None Include="Content\Site.less" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -325,6 +335,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -369,9 +380,11 @@
     <Content Include="Views\Home\AllStores.cshtml" />
     <Content Include="Views\Messages\MyMessages.cshtml" />
     <Content Include="Views\Messages\MessageRoom.cshtml" />
+    <Content Include="Views\Manage\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\profileImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -438,6 +451,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611221717305_ChangesToMessages.resx">
       <DependentUpon>201611221717305_ChangesToMessages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611261442446_EditUserDetails.resx">
+      <DependentUpon>201611261442446_EditUserDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611261511460_changeBoolOfWorldwide.resx">
+      <DependentUpon>201611261511460_changeBoolOfWorldwide.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

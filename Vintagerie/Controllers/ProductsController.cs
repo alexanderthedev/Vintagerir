@@ -75,7 +75,7 @@ namespace Vintagerie.Controllers
         
 
 
-            return RedirectToAction("MyProducts","Products");
+            return RedirectToAction("MyProducts");
         }
 
 

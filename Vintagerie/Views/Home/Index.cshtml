@@ -96,42 +96,42 @@
 
 
 
-<section class="bestShops">
+<section class="bestProducts">
     <div class="flowers">
         <figure>
-            <img src="~/Content/images/mostLoved.png" alt="Most loved shops" />
+            <img src="~/Content/images/mostLiked.png" alt="Most Liked Products" />
         </figure>
     </div>
 
     <div class="row myContainer">
 
-        @foreach (var product in Model.Product.Take(3))
+        @foreach (var product in Model.Product)
         {
-            
-                
-                <div class="col-md-4 card">
-                    <figure class="mainImg">
-                        <img src="http://localhost:49559/@Model.Picture.Single(s => s.Product.Id == product.Id).Path" alt="" />
-                    </figure>   
-                    <div class="filterMe"></div>
-                    <div class="storeNameLoves">
+
+
+            <div class="col-md-4 card">
+                <figure class="mainImg">
+                    <img src="http://localhost:49559/@Model.Picture.Single(s => s.Product.Id == product.Id).Path" alt="" />
+                </figure>
+                <div class="filterMe"></div>
+                <div class="storeNameLoves">
+                    <a href="#">
+                        <div class="storeName">
+                            @product.User.Name
+                        </div>
+                    </a>
+                    <div class="loves">
                         <a href="#">
-                            <div class="storeName">
-                                @product.User.Name
-                            </div>
+                            <div class="productName">@product.ProductName</div>
                         </a>
-                        <div class="loves">
-                            <a href="#">
-                                <div class="productName">@product.ProductName</div>
-                            </a>
-                            <div class="lovesCount">
-                                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> @product.User.Loves
-                            </div>
+                        <div class="lovesCount">
+                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> @product.ProductLikes
                         </div>
                     </div>
-
                 </div>
-            
+
+            </div>
+
 
 
         }
@@ -139,12 +139,62 @@
 
 
     </div>
+
+   
 </section>
 
 
+<section class="bestShops">
+        <div class="flowers">
+            <figure>
+                <img src="~/Content/images/mostLoved.png" alt="Most loved shops" />
+            </figure>
+        </div>
+
+        <div class="row myContainer">
+
+            @foreach (var user in Model.TopUsers)
+            {
+                <div class="col-md-4 card">
+                    <figure class="mainImg">
+                        <img src="@user.PhotoProFileName" alt="@user.Name" />
+                    </figure>
+                    <div class="filterMe"></div>
+                    <div class="storeNameLoves">
+                        <a href="#">
+                            <div class="storeName">
+                                @user.Name
+                            </div>
+                        </a>
+                        <div class="loves">
+                            <a href="#">
+                                <div class="productName">@user.CountryName</div>
+                            </a>
+                            <div class="lovesCount">
+                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> @user.Loves
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </section>
 
 
 
+<section class="cta">
+    <div class="row bannerButtons">
+        <div class="row">
+            <div class="col-xs-6 register">
+                <a href="/account/register">Sing Up</a>
+            </div>
+            <div class="col-xs-6 learn">
+                <a href="/account/register">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 @section scripts

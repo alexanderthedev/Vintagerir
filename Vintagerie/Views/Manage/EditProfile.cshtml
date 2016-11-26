@@ -1,0 +1,52 @@
+﻿@model Vintagerie.ViewModels.ProfileViewModel
+
+
+@{
+    ViewBag.Title = "Edit your profile";
+}
+
+<h2>Edit your profile</h2>
+
+
+<section class="in-side">
+    <h2>
+        @Model.User.Name
+    </h2>
+
+
+    @using (Html.BeginForm("SaveProfile","Manage",FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+                <div class="formName">
+                    @Html.LabelFor(m => m.User.Name)
+                    @Html.TextBoxFor(m => m.User.Name)
+                </div>
+
+                <div class="formDescription">
+                    @Html.LabelFor(m => m.User.Description)
+                    @Html.TextBoxFor(m => m.User.Description)
+                </div>
+
+                <div class="formCountryName">
+                    @Html.LabelFor(m => m.User.CountryName)
+                    @Html.TextBoxFor(m => m.User.CountryName)
+                </div>
+
+                <div class="formCountryName">
+                    @Model.User.PhotoProFileName
+                </div>
+
+
+                <div class="deliverWorld">
+                    @Html.LabelFor(m => m.User.DeliverWorldwide)
+                    @Html.CheckBoxFor(m => m.User.DeliverWorldwide)
+                </div>
+
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.ProfilePicture.File, new { type = "file" })
+                </div>
+
+                   @Html.HiddenFor(m => m.User.Id);
+
+        <button type="submit">Save</button>
+    }
+</section>

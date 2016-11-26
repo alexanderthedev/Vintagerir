@@ -15,6 +15,14 @@ namespace Vintagerie.Models
 
         public int? Loves { get; set; }
 
+        public string Description { get; set; }
+
+        public string CountryName { get; set; }
+
+        public bool DeliverWorldwide { get; set; }
+
+        public string PhotoProFileName { get; set; }
+
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

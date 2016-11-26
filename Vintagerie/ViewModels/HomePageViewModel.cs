@@ -9,5 +9,6 @@ namespace Vintagerie.ViewModels
         public IEnumerable<PictureInfo> Picture { get; set; }
         public IEnumerable<ApplicationUser> Users { get; set; }
         public IEnumerable<LikeUserToProduct> Likes { get; set; }
+        public IEnumerable<ApplicationUser> TopUsers { get; set; }
     }
 }
