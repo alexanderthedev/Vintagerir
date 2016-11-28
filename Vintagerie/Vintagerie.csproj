@@ -188,11 +188,13 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Dtos\LikeDtio.cs" />
     <Compile Include="Dtos\LoveDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Migrations\201611081820054_Initiate.cs" />
     <Compile Include="Migrations\201611081820054_Initiate.Designer.cs">
       <DependentUpon>201611081820054_Initiate.cs</DependentUpon>
