@@ -26,7 +26,8 @@ namespace Vintagerie
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.less"));
+                      "~/Content/font-awesome.min.css",
+                      "~/Content/site.css"));
         }
     }
 }

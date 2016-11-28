@@ -120,13 +120,37 @@
                             @product.User.Name
                         </div>
                     </a>
-                    <div class="loves">
-                        <a href="#">
-                            <div class="productName">@product.ProductName</div>
-                        </a>
-                        <div class="lovesCount">
-                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> @product.ProductLikes
-                        </div>
+                    <div class="loves row">
+                        <div class="productNameDiv col-xs-9">
+
+                            <div class="productName">
+                                <a href="#">
+                                    @product.ProductName
+                                </a>
+                            </div>
+
+                    </div>
+
+
+                        @if (Model.Likes.Contains(product.Id))
+                        {
+                            <div class="lovesCount js-likeDis col-xs-3 fa fa-thumbs-up" data-productId="@product.Id">
+                                <span class="counter">
+                                    @product.ProductLikes
+                                </span>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="lovesCount js-likeDis col-xs-3 fa fa-thumbs-o-up" data-productId="@product.Id">
+                                <span class="counter">
+                                    @product.ProductLikes
+                                </span>
+                            </div>
+
+                        }
+
                     </div>
                 </div>
 
@@ -138,48 +162,61 @@
 
 
 
-    </div>
+        </div>
 
-   
-</section>
+
+    </section>
 
 
 <section class="bestShops">
-        <div class="flowers">
-            <figure>
-                <img src="~/Content/images/mostLoved.png" alt="Most loved shops" />
-            </figure>
-        </div>
+    <div class="flowers">
+        <figure>
+            <img src="~/Content/images/mostLoved.png" alt="Most loved shops" />
+        </figure>
+    </div>
 
-        <div class="row myContainer">
+    <div class="row myContainer">
 
-            @foreach (var user in Model.TopUsers)
+        @foreach (var user in Model.TopUsers)
             {
-                <div class="col-md-4 card">
-                    <figure class="mainImg">
-                        <img src="@user.PhotoProFileName" alt="@user.Name" />
-                    </figure>
-                    <div class="filterMe"></div>
-                    <div class="storeNameLoves">
-                        <a href="#">
-                            <div class="storeName">
-                                @user.Name
-                            </div>
-                        </a>
-                        <div class="loves">
-                            <a href="#">
-                                <div class="productName">@user.CountryName</div>
-                            </a>
-                            <div class="lovesCount">
-                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> @user.Loves
-                            </div>
+            <div class="col-md-4 card">
+                <figure class="mainImg">
+                    <img src="@user.PhotoProFileName" alt="@user.Name" />
+                </figure>
+                <div class="filterMe"></div>
+                <div class="storeNameLoves">
+                    <a href="#">
+                        <div class="storeName">
+                            @user.Name
                         </div>
+                    </a>
+                <div class="loves row">
+                    <div class="productName col-xs-9">
+                        <a href="#">
+                            @user.CountryName
+                        </a>
+                    </div>
+                        @if (Model.Loves.Contains(user.Id))
+                        {
+                            <div class="lovesCount fa fa-heart col-xs-3" data-userStoreId="@user.Id">
+                                @user.Loves
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="lovesCount fa fa-heart-o col-xs-3" data-userStoreId="@user.Id">
+                                @user.Loves
+                            </div>
+                        }
+
+
                     </div>
                 </div>
-            }
+            </div>
+        }
 
-        </div>
-    </section>
+    </div>
+</section>
 
 
 
@@ -200,25 +237,24 @@
 @section scripts
 {
     <script>
-        $(document).ready(function() {
-            $(".js-likeDis").click(function(e) {
-                var button = $(e.target);
-                $.post("/api/likes", { pId: button.attr("data-productId")})
+        $(document).ready(function () {
+            $(".js-likeDis").click(function (e) {
+                var myDiv = $(e.target);
+                console.log(myDiv.attr("data-productId"));
+                $.post("/api/likes", { pId: myDiv.attr("data-productId") })
                     .done(function () {
-                        var takeVal = button.parent().find(".productLikes").text();
-                        if (button.text() === "Liked") {
-                            button.text("Like it?");
-                            parseInt(takeVal);
-                            takeVal--;
-                            button.parent().find(".productLikes").text(takeVal);
+                        var num;
+                        if (myDiv.hasClass("fa-thumbs-up")) {
+                            myDiv.removeClass("fa-thumbs-up").addClass("fa-thumbs-o-up");
+                            num = parseInt(myDiv.find("span").text());
+                            myDiv.find("span").text(num - 1);
                         } else {
-                            button.text("Liked");
-                            parseInt(takeVal);
-                            takeVal++;
-                            button.parent().find(".productLikes").text(takeVal);
+                            myDiv.removeClass("fa-thumbs-o-up").addClass("fa-thumbs-up");
+                            num = parseInt(myDiv.find("span").text());
+                            myDiv.find("span").text(num + 1);
                         }
                     })
-                    .fail(function() {
+                    .fail(function () {
                         alert("Something went wrong");
                     });
 

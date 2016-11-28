@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Vintagerie.Models;
 
 namespace Vintagerie.ViewModels
@@ -8,7 +9,10 @@ namespace Vintagerie.ViewModels
         public IEnumerable<Product> Product { get; set; }
         public IEnumerable<PictureInfo> Picture { get; set; }
         public IEnumerable<ApplicationUser> Users { get; set; }
-        public IEnumerable<LikeUserToProduct> Likes { get; set; }
+        public ILookup<int, LikeUserToProduct> Likes { get; set; }
+        public ILookup<string, LovesUserToStore> Loves { get; set; }
         public IEnumerable<ApplicationUser> TopUsers { get; set; }
     }
+
+    
 }
