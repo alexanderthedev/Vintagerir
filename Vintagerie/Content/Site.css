@@ -6,6 +6,7 @@ html {
 }
 body {
   height: 100%;
+  padding-top: 200px;
 }
 .body-content {
   padding-left: 15px;
@@ -275,4 +276,33 @@ footer p {
   color: white;
   text-transform: uppercase;
   padding: 2px 10px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu > .dropdown-menu {
+  margin-top: -6px;
+  margin-left: -1px;
+  -webkit-border-radius: 0 6px 6px 6px;
+  -moz-border-radius: 0 6px 6px 6px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu > .dropdown-menu a {
+  background: #98e2bf;
+  padding: 10px 0;
+  text-align: center;
+  margin: 0;
+  color: #999999;
+}
+.dropdown-submenu > .dropdown-menu > li > a:hover,
+.dropdown-submenu > .dropdown-menu > li > a:focus {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #98e2bf;
+}
+.dropdown-submenu ul {
+  padding: 0;
+}
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block;
 }

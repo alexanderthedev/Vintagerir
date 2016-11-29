@@ -306,21 +306,24 @@
     <Compile Include="ViewModels\ProfileViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-Vintagerie-20161108071517.mdf" />
+    <Content Include="App_Data\aspnet-Vintagerie-20161108071517_log.ldf">
+      <DependentUpon>aspnet-Vintagerie-20161108071517.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\images\1269269166.jpg" />
-    <Content Include="Content\images\aboutUsImage.jpg" />
+    <Content Include="Content\images\AlexisStore\gloves\free_hexa_pattern_cc0_by_black_light_studio-d4ig12f.png" />
+    <Content Include="Content\images\AlexisStore\gloves\hotel.jpg" />
     <Content Include="Content\images\clothing.png" />
-    <Content Include="Content\images\dubai.jpg" />
-    <Content Include="Content\images\exxonmobil.jpg" />
     <Content Include="Content\images\Flowers.png" />
     <Content Include="Content\images\footerImage.jpg" />
-    <Content Include="Content\images\gild.jpg" />
     <Content Include="Content\images\home.png" />
-    <Content Include="Content\images\hotelImages.jpg" />
     <Content Include="Content\images\jewelleries.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\lorina\hat 1\ShopImage.jpg" />
+    <Content Include="Content\images\lorina\lorina product\hotel.jpg" />
+    <Content Include="Content\images\lorina\Louboutin shoes\louboutin.jpg" />
     <Content Include="Content\images\mainBanner.jpg" />
     <Content Include="Content\images\mostLiked.png" />
     <Content Include="Content\images\mostLoved.png" />
@@ -350,6 +353,10 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\lavintagerie - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\vintagerie - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\withSql - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\withSql - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -363,7 +370,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -406,7 +415,6 @@
     <Content Include="Views\Manage\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Content\profileImages\" />
   </ItemGroup>
   <ItemGroup>

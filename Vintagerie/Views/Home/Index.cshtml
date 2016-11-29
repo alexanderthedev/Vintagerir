@@ -129,7 +129,7 @@
                                 </a>
                             </div>
 
-                    </div>
+                        </div>
 
 
                         @if (Model.Likes.Contains(product.Id))
@@ -150,22 +150,17 @@
                             </div>
 
                         }
-
                     </div>
                 </div>
-
             </div>
-
-
-
         }
 
 
 
-        </div>
+    </div>
 
 
-    </section>
+</section>
 
 
 <section class="bestShops">
@@ -190,22 +185,26 @@
                             @user.Name
                         </div>
                     </a>
-                <div class="loves row">
-                    <div class="productName col-xs-9">
-                        <a href="#">
-                            @user.CountryName
-                        </a>
-                    </div>
+                    <div class="loves row">
+                        <div class="productName col-xs-9">
+                            <a href="#">
+                                @user.CountryName
+                            </a>
+                        </div>
                         @if (Model.Loves.Contains(user.Id))
                         {
-                            <div class="lovesCount fa fa-heart col-xs-3" data-userStoreId="@user.Id">
-                                @user.Loves
+                            <div class="lovesCount fa fa-heart col-xs-3 js-loveDis" data-uId="@user.Id">
+                                <span class="counter">
+                                    @user.Loves
+                                </span>
                             </div>
                         }
                         else
                         {
-                            <div class="lovesCount fa fa-heart-o col-xs-3" data-userStoreId="@user.Id">
-                                @user.Loves
+                            <div class="lovesCount fa fa-heart-o col-xs-3 js-loveDis" data-uId="@user.Id">
+                                <span class="counter">
+                                    @user.Loves
+                                </span>
                             </div>
                         }
 
@@ -240,7 +239,6 @@
         $(document).ready(function () {
             $(".js-likeDis").click(function (e) {
                 var myDiv = $(e.target);
-                console.log(myDiv.attr("data-productId"));
                 $.post("/api/likes", { pId: myDiv.attr("data-productId") })
                     .done(function () {
                         var num;
@@ -256,6 +254,33 @@
                     })
                     .fail(function () {
                         alert("Something went wrong");
+                    });
+
+            });
+        });
+
+        //love store
+
+        $(document).ready(function () {
+            $(".js-loveDis").click(function (e) {
+
+                var button = $(e.target);
+                $.post("/api/loves", { Uid: button.attr("data-uId") })
+                    .done(function () {
+                        console.log("done");
+                        var num;
+                        if (button.hasClass("fa-heart-o")) {
+                            button.removeClass("fa-heart-o").addClass("fa-heart");
+                            num = parseInt(button.find("span").text());
+                            button.find("span").text(num + 1);
+                        } else {
+                            button.removeClass("fa-heart").addClass("fa-heart-o");
+                            num = parseInt(button.find("span").text());
+                            button.find("span").text(num - 1);
+                        }
+                    })
+                    .fail(function () {
+                        alert("error");
                     });
 
             });
