@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
 using Vintagerie.Models;
@@ -16,6 +17,12 @@ namespace Vintagerie.Helpers
 
             var storeName = Context.Users.Single(u => u.Id == currentUser).Name ;
             return storeName;
+        }
+
+        public static List<ProductCategory>  GetCategories()
+        {
+            var categories = Context.ProductCategories.ToList();
+            return categories;
         }
 
     }

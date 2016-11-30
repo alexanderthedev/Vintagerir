@@ -207,5 +207,23 @@ namespace Vintagerie.Controllers
 
             return View("Create", viewModel);
         }
+
+        public ActionResult Category(int id)
+        {
+
+            var userId = User.Identity.GetUserId();
+            var productInCategory = _context.Products.Include(p => p.User).Where(p => p.ProductCategoryId == id).ToList();
+            var picturesOfCategory = _context.PIctureInfos.Where(p => p.Product.ProductCategoryId == id && p.OrderNumber == 0).ToList();
+            var likesOfUser = _context.Likes.Where(l => l.LikerId == userId).ToList().ToLookup(l => l.ProductLikedId);
+
+            var viewModel = new CategoryViewModel
+            {
+                Products = productInCategory,
+                Pictures = picturesOfCategory,
+                Likes = likesOfUser
+            };
+
+            return View(viewModel);
+        }
     }
 }

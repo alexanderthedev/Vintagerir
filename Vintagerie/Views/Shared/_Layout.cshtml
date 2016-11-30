@@ -1,4 +1,5 @@
-﻿
+﻿@using Vintagerie.Helpers
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,6 +37,15 @@
                 <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MyProducts" ? "active" : "")">@Html.ActionLink("My products", "MyProducts", "Products")</li>
                 <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "AllStores" ? "active" : "")">@Html.ActionLink("All stores", "AllStores", "Home")</li>
                 <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MyMessages" ? "active" : "")">@Html.ActionLink("My Messages", "MyMessages", "Messages")</li>
+                <li class="dropdown-submenu">
+                    <a href="">Categories</a> 
+                    <ul class="dropdown-menu">
+                        @foreach (var categories in Extensions.GetCategories())
+                        {
+                            <li>@Html.ActionLink(categories.Name, "Category", "Products", new { id  = categories.Id}, null)</li>
+                        }
+                    </ul>
+                </li>
             </ul>
             @Html.Partial("_LoginPartial")
         </div>

@@ -1,0 +1,74 @@
+﻿@model Vintagerie.ViewModels.CategoryViewModel
+
+@{
+    ViewBag.Title = "title";
+}
+
+
+
+
+<section class="bestProducts">
+    <div class="flowers">
+        <figure>
+            <img src="~/Content/images/mostLiked.png" alt="Most Liked Products" />
+        </figure>
+    </div>
+
+    <div class="row myContainer">
+
+        @foreach (var product in Model.Products)
+        {
+
+
+            <div class="col-md-4 card">
+                <figure class="mainImg">
+                    <img src="@Model.Pictures.Single(p => p.ProductId == product.Id)" alt="" />
+                </figure>
+                <div class="filterMe"></div>
+                <div class="storeNameLoves">
+                    <a href="#">
+                        <div class="storeName">
+                            @product.User.Name
+                        </div>
+                    </a>
+                    <div class="loves row">
+                        <div class="productNameDiv col-xs-9">
+
+                            <div class="productName">
+                                <a href="#">
+                                    @product.ProductName
+                                </a>
+                            </div>
+
+                        </div>
+
+
+                        @if (Model.Likes.Contains(product.Id))
+                        {
+                            <div class="lovesCount js-likeDis col-xs-3 fa fa-thumbs-up" data-productId="@product.Id">
+                                <span class="counter">
+                                    @product.ProductLikes
+                                </span>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="lovesCount js-likeDis col-xs-3 fa fa-thumbs-o-up" data-productId="@product.Id">
+                                <span class="counter">
+                                    @product.ProductLikes
+                                </span>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+
+
+
+    </div>
+
+
+</section>
