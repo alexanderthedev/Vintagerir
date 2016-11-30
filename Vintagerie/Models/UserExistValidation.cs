@@ -6,7 +6,7 @@ namespace Vintagerie.Models
     public class UserExistValidation : ValidationAttribute
     {
 
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public UserExistValidation()
         {
@@ -20,7 +20,7 @@ namespace Vintagerie.Models
 
                 if (findUser != null)
                 {
-                    return new ValidationResult("This name already exist.");
+                    return new ValidationResult("This name already exists.");
                 }
 
 
