@@ -43,6 +43,8 @@ namespace Vintagerie.Models
                 .WithMany()
                 .WillCascadeOnDelete(false);
 
+        
+
             base.OnModelCreating(modelBuilder);
         }
     }

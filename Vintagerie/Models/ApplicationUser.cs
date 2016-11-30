@@ -11,6 +11,7 @@ namespace Vintagerie.Models
     {
         [Required]
         [StringLength(100)]
+        [UserExistValidation]
         public string Name { get; set; }
 
         public int? Loves { get; set; }
