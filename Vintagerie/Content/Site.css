@@ -242,9 +242,6 @@ figure img {
 .bestShops {
   margin-top: 100px;
 }
-.in-side {
-  padding-top: 150px;
-}
 .cta {
   background-image: url(images/stripesbackground.png);
   padding: 30px 0;
@@ -305,4 +302,22 @@ footer p {
 }
 .dropdown-submenu:hover > .dropdown-menu {
   display: block;
+}
+.login {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
+  padding: 40px 80px;
+}
+.login h2 {
+  color: #9e1c64;
+}
+.login input[type=password],
+.login input[type=text] {
+  border: 0;
+  font-size: 18px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #9e1c64;
 }

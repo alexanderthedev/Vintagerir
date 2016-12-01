@@ -3,6 +3,7 @@
 @roboto: 'Roboto', sans-serif;
 @alex: 'Alex Brush', cursive;
 @pacifico: 'Pacifico', cursive;
+@boxShadow: 0px 1px 3px rgba(0,0,0,0.12);
 
 * {
     font-family: @roboto;
@@ -323,9 +324,7 @@ figure {
     margin-top: 100px;
 }
 
-.in-side {
-    padding-top: 150px;
-}
+
 
 .cta {
     background-image: url(images/stripesbackground.png);
@@ -376,6 +375,7 @@ footer {
         -webkit-border-radius: 0 6px 6px 6px;
         -moz-border-radius: 0 6px 6px 6px;
         border-radius: 0 6px 6px 6px;
+
         a {
             background: @secondColor;
             padding: 10px 0;
@@ -383,11 +383,12 @@ footer {
             margin: 0;
             color: #999999;
         }
-            > li > a:hover,
-            > li > a:focus {
-                color: #ffffff;
-                text-decoration: none;
-                background-color: @secondColor;
+
+        > li > a:hover,
+        > li > a:focus {
+            color: #ffffff;
+            text-decoration: none;
+            background-color: @secondColor;
         }
     }
 
@@ -400,3 +401,23 @@ footer {
     display: block;
 }
 
+.login {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: @boxShadow;
+    padding: 40px 80px;
+
+    h2 {
+        color: @purple;
+    }
+
+    input[type=password],
+    input[type=text] {
+        border: 0;
+        font-size: 18px;
+        padding: 5px 10px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid @purple;
+    }
+}
