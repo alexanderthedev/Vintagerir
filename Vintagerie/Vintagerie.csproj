@@ -287,6 +287,10 @@
     <Compile Include="Migrations\201611301821347_test.Designer.cs">
       <DependentUpon>201611301821347_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612012004024_AddNotification.cs" />
+    <Compile Include="Migrations\201612012004024_AddNotification.Designer.cs">
+      <DependentUpon>201612012004024_AddNotification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -296,11 +300,14 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MessageRoom.cs" />
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\NotificationType.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Models\PIctureInfo.cs" />
     <Compile Include="Models\UserExistValidation.cs" />
+    <Compile Include="Models\UserNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AllStoresViewModel.cs" />
@@ -498,6 +505,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611301821347_test.resx">
       <DependentUpon>201611301821347_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612012004024_AddNotification.resx">
+      <DependentUpon>201612012004024_AddNotification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

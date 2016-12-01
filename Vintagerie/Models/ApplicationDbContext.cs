@@ -14,6 +14,10 @@ namespace Vintagerie.Models
 
         public DbSet<MessageRoom> MessageRooms { get; set; }
         public DbSet<Message> Messages { get; set; }
+        
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<UserNotification> UserNotifications { get; set; }  
+
 
         public ApplicationDbContext() 
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -43,7 +47,12 @@ namespace Vintagerie.Models
                 .WithMany()
                 .WillCascadeOnDelete(false);
 
-        
+            modelBuilder.Entity<UserNotification>()
+                .HasRequired(m => m.User)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+
 
             base.OnModelCreating(modelBuilder);
         }

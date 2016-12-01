@@ -92,6 +92,25 @@ namespace Vintagerie.Controllers
             };
 
             _context.Messages.Add(newMessage);
+
+
+            var notification = new Notification
+            {
+                Id = Guid.NewGuid(),
+                DateCreate = DateTime.Now,
+                Type = NotificationType.NewMessage
+            };
+
+            var receiver = _context.Users.Single(u => u.Id == message.ReceiverId);
+
+            var userNotification = new UserNotification
+            {
+                Notification =  notification,
+                User = receiver
+            };
+
+            _context.UserNotifications.Add(userNotification);
+
             _context.SaveChanges();
 
             return RedirectToAction("MessageRoom",new {id = message.ReceiverId});
