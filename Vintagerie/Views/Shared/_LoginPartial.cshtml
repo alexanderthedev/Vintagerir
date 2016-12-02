@@ -11,10 +11,13 @@
             <li class="dropdown-submenu">
                 @Html.ActionLink("Hello " + User.Identity.GetStoreName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                 <ul class="dropdown-menu">
-                    <li><a tabindex="-1" href="#">Second level</a></li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MyMessages" ? "active" : "")">@Html.ActionLink("My Messages", "MyMessages", "Messages")</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MyProducts" ? "active" : "")">@Html.ActionLink("My products", "MyProducts", "Products")</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Create" ? "active" : "")">@Html.ActionLink("Add Product", "Create", "Products")</li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+
                 </ul>
             </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
     }
 }

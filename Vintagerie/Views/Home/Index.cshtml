@@ -115,7 +115,7 @@
                 </figure>
                 <div class="filterMe"></div>
                 <div class="storeNameLoves">
-                    <a href="#">
+                    <a href="@Url.Action("SingleStore","Store", new { id = @product.User.Slug},null)">
                         <div class="storeName">
                             @product.User.Name
                         </div>

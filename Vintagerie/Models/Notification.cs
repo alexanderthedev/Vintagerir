@@ -4,9 +4,15 @@ namespace Vintagerie.Models
 {
     public class Notification
     {
-        public Guid Id { get; set; }
-        public DateTime DateCreate { get; set; }
-        public NotificationType Type { get; set; }
+        public Guid Id { get; private set; }
+        public DateTime DateCreate { get; private set; }
+        public NotificationType Type { get; private set; }
 
+        public Notification(NotificationType type)
+        {
+            Id = Guid.NewGuid();
+            Type = type;
+            DateCreate = DateTime.Now;
+        }
     }
 }

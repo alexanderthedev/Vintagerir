@@ -8,6 +8,11 @@ namespace Vintagerie.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        [UserExistValidationExternal]
+        public string Name { get; set; }
     }
 
     public class ExternalLoginListViewModel

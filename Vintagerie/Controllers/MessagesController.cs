@@ -36,7 +36,9 @@ namespace Vintagerie.Controllers
 
             var myId = User.Identity.GetUserId();
 
-            var ourMessageRoom = _context.MessageRooms.SingleOrDefault(r => (r.UserAId == myId || r.UserBId == myId) && (r.UserAId == id || r.UserBId == id));
+            var ourMessageRoom = 
+                _context.MessageRooms
+                .SingleOrDefault(r => (r.UserAId == myId || r.UserBId == myId) && (r.UserAId == id || r.UserBId == id));
 
 
            
@@ -94,22 +96,14 @@ namespace Vintagerie.Controllers
             _context.Messages.Add(newMessage);
 
 
-            var notification = new Notification
-            {
-                Id = Guid.NewGuid(),
-                DateCreate = DateTime.Now,
-                Type = NotificationType.NewMessage
-            };
+
+            var notification = new Notification(NotificationType.NewMessage);
 
             var receiver = _context.Users.Single(u => u.Id == message.ReceiverId);
 
-            var userNotification = new UserNotification
-            {
-                Notification =  notification,
-                User = receiver
-            };
+            receiver.Notify(notification);
 
-            _context.UserNotifications.Add(userNotification);
+           
 
             _context.SaveChanges();
 

@@ -10,7 +10,7 @@
     {
 
         <li>
-            name : @store.Name @Html.ActionLink("Contact Me","MessageRoom","Messages",new {id = @store.Id}, null)  <br/>
+            name : @store.Name @Html.ActionLink("Contact Me","MessageRoom","Messages",new { id = @store.Id}, null)  <br/>
             Loves :<span class="uLoves">@store.Loves</span><br>
 
             @{ var isLoved = Model.Loves.Any(a => a.LovedId == @store.Id) ? "Loved" : "Love me?";  }

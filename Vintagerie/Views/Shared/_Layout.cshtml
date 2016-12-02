@@ -33,10 +33,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
-                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Create" ? "active" : "")">@Html.ActionLink("Add Product", "Create", "Products")</li>
-                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MyProducts" ? "active" : "")">@Html.ActionLink("My products", "MyProducts", "Products")</li>
                 <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "AllStores" ? "active" : "")">@Html.ActionLink("All stores", "AllStores", "Home")</li>
-                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MyMessages" ? "active" : "")">@Html.ActionLink("My Messages", "MyMessages", "Messages")</li>
                 <li class="dropdown-submenu">
                     <a href="">Categories</a> 
                     <ul class="dropdown-menu">

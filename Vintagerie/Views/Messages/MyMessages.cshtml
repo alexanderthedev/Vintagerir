@@ -8,13 +8,16 @@
 <h2>My messages</h2>
 
 <ul>
-    @foreach (var room in Model)
+    @if (Model.Any())
+    {
+  
+    foreach (var room in Model)
     {
 
 
         <li>
-        
-           
+
+
 
 
 
@@ -63,4 +66,6 @@
         </li>
 
     }
+    }
+
 </ul>

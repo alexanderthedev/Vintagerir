@@ -49,7 +49,7 @@ namespace Vintagerie.Models
 
             modelBuilder.Entity<UserNotification>()
                 .HasRequired(m => m.User)
-                .WithMany()
+                .WithMany(g => g.UserNotifications)
                 .WillCascadeOnDelete(false);
 
 

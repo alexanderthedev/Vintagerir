@@ -8,14 +8,35 @@ namespace Vintagerie.Models
     {
         [Key]
         [Column(Order = 1)]
-        public string UserId { get; set; }
+        public string UserId { get;  set; }
 
         [Key]
         [Column(Order = 2)]
-        public Guid NotificationId { get; set; }
+        public Guid NotificationId { get;  set; }
 
-        public ApplicationUser User { get; set; }
-        public Notification Notification { get; set; }
-        public bool IsRead { get; set; } 
+        public ApplicationUser User { get; private set; }
+        public Notification Notification { get; private set; }
+        public bool IsRead { get; set; }
+
+        protected UserNotification()
+        {
+        }
+
+        public UserNotification(ApplicationUser user, Notification notification)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+
+            if (notification == null)
+            {
+                throw new ArgumentNullException(nameof(notification));
+            }
+
+            User = user;
+            Notification = notification;
+
+        }
     }
 }

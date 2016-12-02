@@ -5,33 +5,34 @@
     ViewBag.Title = "MessageRoom";
 }
 
-<h2>MessageRoom</h2>
 
-<ul>
-  @if (Model.ListOfMessages != null)
+<div class="in-side">
+    <h2>MessageRoom</h2>
+
+    <ul>
+      
+            @foreach (var message in Model.ListOfMessages)
+            {
+                <li>
+                    sent: @message.TimeSent <br />
+                    sender: @message.Sender.Name <br />
+                    receiver: @message.Receiver.Name <br />
+                    content: @message.Content <br />
+
+                </li>
+            }
+        </ul>
+
+    @using (Html.BeginForm("SendMessage", "Messages", FormMethod.Post))
     {
-          foreach (var message in Model.ListOfMessages)
-          {
-            <li>
-                sent: @message.TimeSent <br />
-                sender: @message.Sender.Name <br />
-                receiver: @message.Receiver.Name <br />
-                content: @message.Content <br />
+        <div>
+            @Html.LabelFor(m => m.SingleMessage.Content)
+            @Html.TextAreaFor(m => m.SingleMessage.Content)
+        </div>
+        @Html.HiddenFor(m => m.ReceiverId)
+        @Html.HiddenFor(m => m.SingleMessage.MessageRoomId)
 
-            </li>
-          }
+        <button type="submit">send</button>
     }
-</ul>
 
-@using (Html.BeginForm("SendMessage","Messages",FormMethod.Post))
-{
-    <div>
-        @Html.LabelFor(m => m.SingleMessage.Content)
-        @Html.TextAreaFor(m => m.SingleMessage.Content)
-    </div>
-    @Html.HiddenFor(m => m.ReceiverId)
-    @Html.HiddenFor(m => m.SingleMessage.MessageRoomId)
-
-    <button type="submit">send</button>
-}
-
+</div>

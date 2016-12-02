@@ -6,7 +6,6 @@ html {
 }
 body {
   height: 100%;
-  padding-top: 200px;
 }
 .body-content {
   padding-left: 15px;
@@ -320,4 +319,7 @@ footer p {
   padding: 5px 10px;
   margin-bottom: 10px;
   border-bottom: 2px solid #9e1c64;
+}
+.in-side {
+  margin-top: 150px;
 }
