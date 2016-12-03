@@ -33,16 +33,8 @@ namespace Vintagerie.Controllers.Api
                 .Include(n => n.Creator)
                 .ToList();
 
-          
-            var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<Notification, NotificationDto>();
-                cfg.CreateMap<ApplicationUser, ApplicationUserDto>();
-            });
-            
-            IMapper mapper = config.CreateMapper();
-         
 
-            return notifications.Select(mapper.Map<Notification, NotificationDto>);
+            return notifications.Select(Mapper.Map<Notification,NotificationDto>);
         }
     }
 }

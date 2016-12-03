@@ -8,12 +8,8 @@ namespace Vintagerie.App_Start
     {
         public MappingProfile()
         {
-            var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<Notification, NotificationDto>();
-                cfg.CreateMap<ApplicationUser, ApplicationUserDto>();
-            });
-
-            IMapper mapper = config.CreateMapper();
+            CreateMap<ApplicationUser, ApplicationUserDto>();
+            CreateMap<Notification, NotificationDto>();
         }
     }
 }
