@@ -1,7 +1,7 @@
 using System;
 using Vintagerie.Models;
 
-namespace Vintagerie.Controllers.Api
+namespace Vintagerie.Dtos
 {
     public class NotificationDto
     {

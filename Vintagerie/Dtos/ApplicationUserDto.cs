@@ -1,4 +1,4 @@
-namespace Vintagerie.Controllers.Api
+namespace Vintagerie.Dtos
 {
     public class ApplicationUserDto
     {

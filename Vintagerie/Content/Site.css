@@ -57,8 +57,7 @@ textarea {
 }
 .nav li a {
   font-size: 18px;
-  color: white;
-  padding: 45px 16px;
+  padding: 30px 16px;
   border-bottom: 6px solid transparent;
   font-weight: 300;
   text-transform: uppercase;
@@ -175,16 +174,9 @@ figure img {
   height: 250px;
   overflow: hidden;
   position: relative;
-  margin: 1.5%;
   padding: 0;
-  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
-  -ms-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
-  -ms-border-radius: 0px;
   border-radius: 0px;
-}
-.col-md-4.card {
-  width: 30%;
 }
 .storeNameLoves {
   position: absolute;
@@ -322,4 +314,19 @@ footer p {
 }
 .in-side {
   margin-top: 150px;
+}
+.notifications a {
+  position: relative;
+  padding: 25px 15px;
+  cursor: pointer;
+}
+.notifications a i {
+  color: #9e1c64;
+  font-size: 25px;
+}
+.notifications a .badge {
+  background-color: #d65daa;
+  position: absolute;
+  top: 20px;
+  right: 5px;
 }

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Vintagerie.Controllers.Api;
+using Vintagerie.Dtos;
 using Vintagerie.Models;
 
 namespace Vintagerie.App_Start

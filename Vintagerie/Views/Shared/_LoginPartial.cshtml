@@ -8,8 +8,15 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
+            <li class="notifications">
+                <a>
+                    <i class="glyphicon glyphicon-bell" aria-hidden="true"></i>
+                    <span class="badge js-notifications hide">
+                    </span>
+                </a>
+            </li>
             <li class="dropdown-submenu">
-                @Html.ActionLink("Hello " + User.Identity.GetStoreName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                @Html.ActionLink("Hello " + User.Identity.GetStoreName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
                 <ul class="dropdown-menu">
                     <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MyMessages" ? "active" : "")">@Html.ActionLink("My Messages", "MyMessages", "Messages")</li>
                     <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MyProducts" ? "active" : "")">@Html.ActionLink("My products", "MyProducts", "Products")</li>

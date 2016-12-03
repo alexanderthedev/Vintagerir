@@ -190,10 +190,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\Api\ApplicationUserDto.cs" />
     <Compile Include="Controllers\Api\LikesController.cs" />
     <Compile Include="Controllers\Api\LovesController.cs" />
-    <Compile Include="Controllers\Api\NotificationDto.cs" />
     <Compile Include="Controllers\Api\NotificationsController.cs" />
     <Compile Include="Controllers\Api\PicturesInProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -202,8 +200,10 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
+    <Compile Include="Dtos\ApplicationUserDto.cs" />
     <Compile Include="Dtos\LikeDtio.cs" />
     <Compile Include="Dtos\LoveDto.cs" />
+    <Compile Include="Dtos\NotificationDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -400,6 +400,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\underscore-min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

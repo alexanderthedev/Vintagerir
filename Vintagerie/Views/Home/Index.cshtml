@@ -109,47 +109,49 @@
         {
 
 
-            <div class="col-md-4 card">
-                <figure class="mainImg">
-                    <img src="@Model.Picture.Single(s => s.Product.Id == product.Id).Path" alt="" />
-                </figure>
-                <div class="filterMe"></div>
-                <div class="storeNameLoves">
-                    <a href="@Url.Action("SingleStore","Store", new { id = @product.User.Slug},null)">
-                        <div class="storeName">
-                            @product.User.Name
+            <div class="col-md-3 col-sm-6">
+                <div class="card">
+                    <figure class="mainImg">
+                        <img src="@Model.Picture.Single(s => s.Product.Id == product.Id).Path" alt="" />
+                    </figure>
+                    <div class="filterMe"></div>
+                    <div class="storeNameLoves">
+                        <a href="@Url.Action("SingleStore", "Store", new {id = @product.User.Slug}, null)">
+                            <div class="storeName">
+                                @product.User.Name
+                            </div>
+                        </a>
+                        <div class="loves row">
+                            <div class="productNameDiv col-xs-9">
+
+                                <div class="productName">
+                                    <a href="#">
+                                        @product.ProductName
+                                    </a>
+                                </div>
+
+                            </div>
+
+
+                            @if (Model.Likes.Contains(product.Id))
+                            {
+                                <div class="lovesCount js-likeDis col-xs-3 fa fa-thumbs-up" data-productId="@product.Id">
+                                    <span class="counter">
+                                        @product.ProductLikes
+                                    </span>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="lovesCount js-likeDis col-xs-3 fa fa-thumbs-o-up" data-productId="@product.Id">
+                                    <span class="counter">
+                                        @product.ProductLikes
+                                    </span>
+                                </div>
+
+                            }
                         </div>
-                    </a>
-                    <div class="loves row">
-                        <div class="productNameDiv col-xs-9">
-
-                            <div class="productName">
-                                <a href="#">
-                                    @product.ProductName
-                                </a>
-                            </div>
-
-                        </div>
-
-
-                        @if (Model.Likes.Contains(product.Id))
-                        {
-                            <div class="lovesCount js-likeDis col-xs-3 fa fa-thumbs-up" data-productId="@product.Id">
-                                <span class="counter">
-                                    @product.ProductLikes
-                                </span>
-                            </div>
-
-                        }
-                        else
-                        {
-                            <div class="lovesCount js-likeDis col-xs-3 fa fa-thumbs-o-up" data-productId="@product.Id">
-                                <span class="counter">
-                                    @product.ProductLikes
-                                </span>
-                            </div>
-
-                        }
                     </div>
                 </div>
             </div>
@@ -174,41 +176,43 @@
 
         @foreach (var user in Model.TopUsers)
             {
-            <div class="col-md-4 card">
-                <figure class="mainImg">
-                    <img src="@user.PhotoProFileName" alt="@user.Name" />
-                </figure>
-                <div class="filterMe"></div>
-                <div class="storeNameLoves">
-                    <a href="#">
-                        <div class="storeName">
-                            @user.Name
-                        </div>
-                    </a>
-                    <div class="loves row">
-                        <div class="productName col-xs-9">
-                            <a href="#">
-                                @user.CountryName
-                            </a>
-                        </div>
-                        @if (Model.Loves.Contains(user.Id))
-                        {
-                            <div class="lovesCount fa fa-heart col-xs-3 js-loveDis" data-uId="@user.Id">
-                                <span class="counter">
-                                    @user.Loves
-                                </span>
+            <div class="col-md-3 col-sm-6">
+                <div class="card">
+                    <figure class="mainImg">
+                        <img src="@user.PhotoProFileName" alt="@user.Name" />
+                    </figure>
+                    <div class="filterMe"></div>
+                    <div class="storeNameLoves">
+                        <a href="#">
+                            <div class="storeName">
+                                @user.Name
                             </div>
-                        }
-                        else
-                        {
-                            <div class="lovesCount fa fa-heart-o col-xs-3 js-loveDis" data-uId="@user.Id">
-                                <span class="counter">
-                                    @user.Loves
-                                </span>
+                        </a>
+                        <div class="loves row">
+                            <div class="productName col-xs-9">
+                                <a href="#">
+                                    @user.CountryName
+                                </a>
                             </div>
-                        }
+                            @if (Model.Loves.Contains(user.Id))
+                            {
+                                <div class="lovesCount fa fa-heart col-xs-3 js-loveDis" data-uId="@user.Id">
+                                    <span class="counter">
+                                        @user.Loves
+                                    </span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="lovesCount fa fa-heart-o col-xs-3 js-loveDis" data-uId="@user.Id">
+                                    <span class="counter">
+                                        @user.Loves
+                                    </span>
+                                </div>
+                            }
 
 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -255,19 +259,16 @@
                     .fail(function () {
                         alert("Something went wrong");
                     });
-
             });
         });
 
         //love store
 
-        $(document).ready(function () {
-            $(".js-loveDis").click(function (e) {
-
+        $(document).ready(function() {
+            $(".js-loveDis").click(function(e) {
                 var button = $(e.target);
                 $.post("/api/loves", { Uid: button.attr("data-uId") })
-                    .done(function () {
-                        console.log("done");
+                    .done(function() {
                         var num;
                         if (button.hasClass("fa-heart-o")) {
                             button.removeClass("fa-heart-o").addClass("fa-heart");
@@ -279,11 +280,10 @@
                             button.find("span").text(num - 1);
                         }
                     })
-                    .fail(function () {
+                    .fail(function() {
                         alert("error");
                     });
-
             });
-        })
+        });
     </script>
 }

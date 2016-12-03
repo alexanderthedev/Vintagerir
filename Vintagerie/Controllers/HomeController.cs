@@ -22,14 +22,14 @@ namespace Vintagerie.Controllers
             var products = _context.Products
                 .Include(p => p.User)
                 .Include(c => c.ProductCategory)
-                .ToList().Take(3);
+                .ToList().Take(4);
 
             var pictures = _context.PIctureInfos.Where(i => i.OrderNumber == 0).ToList();
             var users = _context.Users.ToList();
             var userId = User.Identity.GetUserId();
             var likesOfUser = _context.Likes.Where(l => l.LikerId == userId).ToList().ToLookup(l => l.ProductLikedId);
             var loveOfUser = _context.Loves.Where(l => l.LoverUserId == userId).ToList().ToLookup(l => l.LovedId);
-            var topUsers = _context.Users.OrderByDescending(o => o.Loves).Take(3).ToList();
+            var topUsers = _context.Users.OrderByDescending(o => o.Loves).Take(4).ToList();
 
 
             var allProductsPictures =  new HomePageViewModel
