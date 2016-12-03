@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Vintagerie.Controllers.Api
     [Authorize]
     public class NotificationsController : ApiController
     {
-        private ApplicationDbContext _context;
+        private  ApplicationDbContext _context;
 
 
         public NotificationsController()
@@ -18,16 +19,30 @@ namespace Vintagerie.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
-
-        public IEnumerable<Notification> GetNewNotifications()
+       
+        public IEnumerable<NotificationDto> GetNewNotifications()
         {
+
+            
+
             var userId = User.Identity.GetUserId();
+
             var notifications = _context.UserNotifications
-                .Include(u => u.User)
-                .Where(u => u.UserId == userId)
-                .Select(u => u.Notification)
+                .Where(n => n.UserId == userId)
+                .Select(n => n.Notification)
+                .Include(n => n.Creator)
                 .ToList();
-            return notifications;
+
+          
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<Notification, NotificationDto>();
+                cfg.CreateMap<ApplicationUser, ApplicationUserDto>();
+            });
+            
+            IMapper mapper = config.CreateMapper();
+         
+
+            return notifications.Select(mapper.Map<Notification, NotificationDto>);
         }
     }
 }

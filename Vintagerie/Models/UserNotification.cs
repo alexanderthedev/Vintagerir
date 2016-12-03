@@ -14,8 +14,8 @@ namespace Vintagerie.Models
         [Column(Order = 2)]
         public Guid NotificationId { get;  set; }
 
-        public ApplicationUser User { get; private set; }
-        public Notification Notification { get; private set; }
+        public ApplicationUser User { get; set; }
+        public Notification Notification { get; set; }
         public bool IsRead { get; set; }
 
         protected UserNotification()

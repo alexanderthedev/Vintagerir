@@ -95,9 +95,8 @@ namespace Vintagerie.Controllers
 
             _context.Messages.Add(newMessage);
 
-
-
-            var notification = new Notification(NotificationType.NewMessage);
+            
+            var notification = new Notification(NotificationType.NewMessage, myId);
 
             var receiver = _context.Users.Single(u => u.Id == message.ReceiverId);
 

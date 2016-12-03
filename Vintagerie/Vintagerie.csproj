@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Less, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Less.3.0\lib\Less.dll</HintPath>
       <Private>True</Private>
@@ -181,12 +185,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\MappingProfile.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\ApplicationUserDto.cs" />
     <Compile Include="Controllers\Api\LikesController.cs" />
     <Compile Include="Controllers\Api\LovesController.cs" />
+    <Compile Include="Controllers\Api\NotificationDto.cs" />
     <Compile Include="Controllers\Api\NotificationsController.cs" />
     <Compile Include="Controllers\Api\PicturesInProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -296,6 +303,10 @@
     <Compile Include="Migrations\201612021634194_AddSlugToUser.cs" />
     <Compile Include="Migrations\201612021634194_AddSlugToUser.Designer.cs">
       <DependentUpon>201612021634194_AddSlugToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612022324293_AddNotificationCreator.cs" />
+    <Compile Include="Migrations\201612022324293_AddNotificationCreator.Designer.cs">
+      <DependentUpon>201612022324293_AddNotificationCreator.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -519,6 +530,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612021634194_AddSlugToUser.resx">
       <DependentUpon>201612021634194_AddSlugToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612022324293_AddNotificationCreator.resx">
+      <DependentUpon>201612022324293_AddNotificationCreator.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
