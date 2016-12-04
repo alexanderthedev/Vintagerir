@@ -16,7 +16,7 @@ namespace Vintagerie.Models
 
         public ApplicationUser User { get; set; }
         public Notification Notification { get; set; }
-        public bool IsRead { get; set; }
+        public bool IsRead { get;private set; }
 
         protected UserNotification()
         {
@@ -37,6 +37,11 @@ namespace Vintagerie.Models
             User = user;
             Notification = notification;
 
+        }
+
+        public void Read()
+        {
+            IsRead = true;
         }
     }
 }

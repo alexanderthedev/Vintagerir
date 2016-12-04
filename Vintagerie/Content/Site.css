@@ -317,7 +317,7 @@ footer p {
 }
 .notifications a {
   position: relative;
-  padding: 25px 15px;
+  padding: 23px 15px !important;
   cursor: pointer;
 }
 .notifications a i {
@@ -329,4 +329,44 @@ footer p {
   position: absolute;
   top: 20px;
   right: 5px;
+}
+.creatorName {
+  font-weight: bold;
+}
+.creatorName ul {
+  list-style: none;
+  padding: 0;
+}
+.creatorName ul li {
+  padding: 5px;
+}
+.popover-content ul {
+  list-style: none;
+  padding: 0;
+}
+.popover-content ul li {
+  padding: 0;
+  margin: 5px 0;
+}
+.profileImg > a {
+  height: 83px;
+  width: 83px;
+  overflow: hidden;
+  padding: 0 !important;
+  margin: 0;
+  border-radius: 100%;
+  border: 1px;
+}
+.profileImg > a img {
+  width: 100%;
+}
+.js div#preloader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9990;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  background: #333 url('http://files.mimoymima.com/images/loading.gif') no-repeat center center;
 }

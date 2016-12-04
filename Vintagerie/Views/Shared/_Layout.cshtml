@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
@@ -13,92 +13,106 @@
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-583702e1c0478645"></script>
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 </head>
+<div class="js">
+    <div id="preloader"></div>
+</div>
+
+
 <body>
-    <div class="topSocial">
-        <div class="socialICons pull-right">
-            <div class="addthis_inline_share_toolbox"></div>
-            <div class="clearfix"></div>
-        </div>
+<div class="topSocial">
+    <div class="socialICons pull-right">
+        <div class="addthis_inline_share_toolbox"></div>
+        <div class="clearfix"></div>
     </div>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @* @Html.ActionLink("Application name", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})*@
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "AllStores" ? "active" : "")">@Html.ActionLink("All stores", "AllStores", "Home")</li>
-                    <li class="dropdown-submenu">
-                        <a href="">Categories</a>
-                        <ul class="dropdown-menu">
-                            @foreach (var categories in Extensions.GetCategories())
-                            {
-                                <li>@Html.ActionLink(categories.Name, "Category", "Products", new { id = categories.Id }, null)</li>
-                            }
-                        </ul>
-                    </li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+</div>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @* @Html.ActionLink("Application name", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})*@
         </div>
-    </div>
-
-
-
-    @RenderBody()
-    <footer>
-
-        <div class="footerRow">
-            <div class="col-md-3">
-                <figure>
-                    <img src="/Content/images/logo.png" alt="La vintagerie" />
-                </figure>
-            </div>
-            <div class="col-md-6">
-                <div class="footerNav">
-                    <ul class="footerNavBar">
-                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Create" ? "active" : "")">@Html.ActionLink("Add Product", "Create", "Products")</li>
-                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MyProducts" ? "active" : "")">@Html.ActionLink("My products", "MyProducts", "Products")</li>
-                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "AllStores" ? "active" : "")">@Html.ActionLink("All stores", "AllStores", "Home")</li>
-                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MyMessages" ? "active" : "")">@Html.ActionLink("My Messages", "MyMessages", "Messages")</li>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "AllStores" ? "active" : "")">@Html.ActionLink("All stores", "AllStores", "Home")</li>
+                <li class="dropdown-submenu">
+                    <a href="">Categories</a>
+                    <ul class="dropdown-menu">
+                        @foreach (var categories in Extensions.GetCategories())
+                        {
+                            <li>@Html.ActionLink(categories.Name, "Category", "Products", new {id = categories.Id}, null)</li>
+                        }
                     </ul>
-                    <div class="addthis_inline_share_toolbox"></div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
+                </li>
+            </ul>
+            @Html.Partial("_LoginPartial")
         </div>
-        <p class="">&copy; 2015 - @DateTime.Now.Year | La Vintagerie</p>
-    </footer>
+    </div>
+</div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
+
+@RenderBody()
+<footer>
+
+    <div class="footerRow">
+        <div class="col-md-3">
+            <figure>
+                <img src="/Content/images/logo.png" alt="La vintagerie"/>
+            </figure>
+        </div>
+        <div class="col-md-6">
+            <div class="footerNav">
+                <ul class="footerNavBar">
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Create" ? "active" : "")">@Html.ActionLink("Add Product", "Create", "Products")</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MyProducts" ? "active" : "")">@Html.ActionLink("My products", "MyProducts", "Products")</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "AllStores" ? "active" : "")">@Html.ActionLink("All stores", "AllStores", "Home")</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MyMessages" ? "active" : "")">@Html.ActionLink("My Messages", "MyMessages", "Messages")</li>
+                </ul>
+                <div class="addthis_inline_share_toolbox"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <p class="">&copy; 2015 - @DateTime.Now.Year | La Vintagerie</p>
+</footer>
+
+@Scripts.Render("~/bundles/lib")
+@RenderSection("scripts", required: false)
 
 <script type="text/x-template" id="notif-template">
 
-    <ul>
-        <%
-        _.each(mynotifs, function(notifs){
-        
-        %>
+            <ul>
+                <%
+                _.each(mynotifs, function(notifs){
 
-        <li>New message from <%= notifs.creator.name %></li>
-        }
-        )
-        %>
-    </ul>
-    </script>
+                %>
 
-    <script>
+                <li>New message from <span class="creatorName"><%= notifs.creator.name %> </span> </li>
+
+                <%
+                })
+                %>
+            </ul>
+        </script>
+
+<script>
+
+    $.getJSON("/api/Userinfo", function(imgUrl) {
+        $("#myImg").attr("src", imgUrl);
+    });
+
     $(document).ready(function() {
         $.getJSON("/api/notifications", function(notifications) {
+            if (notifications.length < 1) {
+                return;
+            }
+
             $(".js-notifications").text(notifications.length).removeClass("hide");
 
 
@@ -109,15 +123,29 @@
                     var compiled = _.template($("#notif-template").html());
                     return compiled({
                         mynotifs: notifications
-                        });
+                    });
                 },
                 placement: "bottom"
+            }).on("shown.bs.popover", function() {
+                $.post("/api/notifications/markAsRead")
+                    .done(function() {
+                        $(".js-notifications").text("").addClass("hide");
+                    });
             });
 
         });
 
     });
-    </script>
-    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+    jQuery(document).ready(function($) {  
+
+// site preloader -- also uncomment the div in the header and the css style for #preloader
+$(window).load(function(){
+	$('#preloader').fadeOut('slow',function(){$(this).remove();});
+});
+
+});
+</script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
 </body>
 </html>

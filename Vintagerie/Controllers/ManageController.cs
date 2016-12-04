@@ -12,7 +12,6 @@ using Vintagerie.ViewModels;
 
 namespace Vintagerie.Controllers
 {
-
     [Authorize]
     public class ManageController : Controller
     {
@@ -427,7 +426,7 @@ namespace Vintagerie.Controllers
             if (viewModel.User.Id != myId)
             {
                 return RedirectToAction("Index", "Home");
-                ;
+                
             }
 
             var findUser = _context.Users.Single(u => u.Id == myId);
@@ -459,7 +458,7 @@ namespace Vintagerie.Controllers
             var usersStore = _context.Users.Single(user => user.Id == userId);
             var userDirectory = 
                 direCtorybuilder.Append("~/Content/profileImages/")
-                .Append(usersStore.Name)
+                .Append(usersStore.Slug)
                 .ToString();
 
             if (!Directory.Exists(userDirectory))
@@ -480,7 +479,7 @@ namespace Vintagerie.Controllers
                     var imagePath =
                         imageBuilder
                         .Append("/content/profileImages/")
-                        .Append(usersStore.Name)
+                        .Append(usersStore.Slug)
                         .Append("/")
                         .Append(viewModel.ProfilePicture.File.FileName)
                         .ToString();

@@ -7,7 +7,6 @@ using Vintagerie.ViewModels;
 
 namespace Vintagerie.Controllers
 {
-
     public class HomeController : Controller
     {
         private ApplicationDbContext _context;
