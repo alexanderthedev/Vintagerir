@@ -339,6 +339,7 @@
     <Compile Include="ViewModels\MessagesViewModel.cs" />
     <Compile Include="ViewModels\MyProductsViewModel.cs" />
     <Compile Include="ViewModels\ProductFormViewModel.cs" />
+    <Compile Include="ViewModels\ProductsViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -453,6 +454,7 @@
     <Content Include="Views\Manage\EditProfile.cshtml" />
     <Content Include="Views\Products\Category.cshtml" />
     <Content Include="Views\Store\SingleStore.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\profileImages\" />

@@ -1,0 +1,19 @@
+﻿@model Vintagerie.ViewModels.ProductsViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="in-side">
+    @using (Html.BeginForm("Search", "Products",FormMethod.Post))
+    {
+        @Html.TextBoxFor(m => m.SearchTerm)
+        <button type="submit">Search</button>
+    }
+
+    <h2>Index</h2>
+    @foreach (var pro in Model.Products)
+    {
+        @pro.ProductName
+    }
+</div>

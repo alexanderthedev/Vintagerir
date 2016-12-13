@@ -1,4 +1,5 @@
 ﻿@using Vintagerie.Helpers
+@using Vintagerie.ViewModels
 
 <!DOCTYPE html>
 <html>
@@ -42,6 +43,9 @@
                 <li class="dropdown-submenu">
                     <a href="">Categories</a>
                     <ul class="dropdown-menu">
+                        <li>
+                            <a href="@Url.Action("Index","Products")">All Products</a>
+                        </li>
                         @foreach (var categories in Extensions.GetCategories())
                         {
                             <li>@Html.ActionLink(categories.Name, "Category", "Products", new {id = categories.Id}, null)</li>

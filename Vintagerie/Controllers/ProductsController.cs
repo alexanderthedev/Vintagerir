@@ -225,5 +225,39 @@ namespace Vintagerie.Controllers
 
             return View(viewModel);
         }
+
+        [HttpPost]
+        public ActionResult Search(ProductsViewModel viewModel)
+        {
+            return RedirectToAction("Index", "Products", new {query = viewModel.SearchTerm});
+
+        }
+
+
+        public ActionResult Index(string query = null)
+        {
+
+            var allProducts = _context.Products.Include(p => p.User);
+            var allPictures = _context.PIctureInfos;
+            var myLikes = _context.Likes;
+
+            if (!String.IsNullOrWhiteSpace(query))
+            {
+                allProducts = allProducts
+                    .Where(g => g.ProductName.Contains(query) ||
+                                g.ProductCategory.Name.Contains(query) ||
+                                g.ProductDescription.Contains(query));
+            }
+
+            var products = new ProductsViewModel
+            {
+                Products=  allProducts,
+                Pictures = allPictures,
+                SearchTerm = query,
+                MyLikes = myLikes
+                
+            };
+            return View(products);
+        }
     }
 }

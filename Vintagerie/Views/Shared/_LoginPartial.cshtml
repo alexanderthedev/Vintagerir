@@ -1,6 +1,4 @@
-﻿@using Microsoft.AspNet.Identity
-@using Vintagerie.Helpers
-
+﻿@using Vintagerie.Helpers
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -17,7 +15,7 @@
             </li>
             <li class="dropdown-submenu profileImg">
                 <a href="@Url.Action("Index", "Manage", routeValues: null)">
-                    <img src="" id="myImg"   alt="@User.Identity.GetStoreName()" />
+                    <img src="" id="myImg" alt="@User.Identity.GetStoreName()"/>
                 </a>
                 <ul class="dropdown-menu">
                     <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MyMessages" ? "active" : "")">@Html.ActionLink("My Messages", "MyMessages", "Messages")</li>
@@ -32,7 +30,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink"})</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new {id = "loginLink"})</li>
     </ul>
 }
