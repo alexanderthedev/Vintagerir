@@ -220,7 +220,6 @@ figure img {
 }
 .lovesCount .counter {
   color: black;
-  padding-left: 3px;
 }
 .mainImg {
   position: absolute;
@@ -297,12 +296,14 @@ footer p {
 .login {
   max-width: 900px;
   width: 100%;
-  margin: 0 auto;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
+  margin: 150px auto;
   padding: 40px 80px;
+  text-align: center;
 }
-.login h2 {
+.login > h2 {
   color: #9e1c64;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 .login input[type=password],
 .login input[type=text] {
@@ -311,6 +312,19 @@ footer p {
   padding: 5px 10px;
   margin-bottom: 10px;
   border-bottom: 2px solid #9e1c64;
+}
+.login input[type="submit"] {
+  border: 3px solid #98e2bf;
+  background-color: transparent;
+  width: 180px;
+  padding: 10px 0;
+  font-size: 20px;
+  color: #98e2bf;
+  border-radius: 5px;
+  margin-top: 40px;
+}
+.login input[type="submit"]:focus {
+  outline: 0;
 }
 .in-side {
   margin-top: 150px;
@@ -369,4 +383,47 @@ footer p {
   height: 100%;
   overflow: visible;
   background: #333 url('http://files.mimoymima.com/images/loading.gif') no-repeat center center;
+}
+.login input[type="password"]:focus,
+.login input[type="text"]:focus {
+  outline: 0;
+}
+.orDiv {
+  border-bottom: 1px solid grey;
+  width: 90%;
+  max-width: 236px;
+  margin: 0 auto;
+}
+.orDiv h4 {
+  font-size: 18px;
+  margin-bottom: -11px;
+  position: relative;
+  width: 40px;
+  margin: 30px auto -11px;
+  background: white;
+}
+#socialLoginList > button {
+  margin-top: 40px;
+  border: 0;
+}
+#socialLoginList > button:focus {
+  outline: 0;
+}
+#socialLoginList #Facebook {
+  width: 60px;
+  height: 60px;
+  font: normal normal normal 14px/1 FontAwesome;
+  background-color: transparent;
+}
+#socialLoginList #Facebook::after {
+  content: "\f230";
+  font-size: 60px;
+  color: #3b5998;
+}
+label[for="RememberMe"] {
+  font-weight: 300;
+  font-size: 16px;
+}
+label[for="RememberMe"] + a {
+  margin-left: 50px;
 }
