@@ -362,12 +362,11 @@
     <Content Include="Content\images\lorina\lorina product\hotel.jpg" />
     <Content Include="Content\images\lorina\Louboutin shoes\louboutin.jpg" />
     <Content Include="Content\images\mainBanner.jpg" />
-    <Content Include="Content\images\mostLiked.png" />
-    <Content Include="Content\images\mostLoved.png" />
     <Content Include="Content\images\ShopImage.jpg" />
     <Content Include="Content\images\stripesbackground.png" />
     <Content Include="Content\images\topBar.jpg" />
     <Content Include="Content\images\toys.png" />
+    <Content Include="Content\images\tree.png" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.less</DependentUpon>
     </Content>

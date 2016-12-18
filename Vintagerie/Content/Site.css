@@ -150,6 +150,14 @@ a:focus {
   text-align: center;
   padding: 30px 0px;
 }
+.flowers figure figcaption {
+  font-size: 30px;
+  color: #9e1c64;
+  font-family: 'Pacifico', cursive;
+  max-width: 306px;
+  margin: 0 auto;
+  margin-bottom: -10px;
+}
 .byCateogories {
   background-image: url(images/stripesbackground.png);
   padding: 1px;
@@ -322,12 +330,18 @@ footer p {
   color: #98e2bf;
   border-radius: 5px;
   margin-top: 40px;
+  transition: 0.2s all ease-in-out;
+}
+.login input[type="submit"]:hover {
+  background-color: #98e2bf;
+  color: #fff;
 }
 .login input[type="submit"]:focus {
   outline: 0;
 }
 .in-side {
   margin-top: 150px;
+  margin-bottom: 100px;
 }
 .notifications a {
   position: relative;

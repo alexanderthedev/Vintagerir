@@ -208,22 +208,57 @@ namespace Vintagerie.Controllers
             return View("Create", viewModel);
         }
 
-        public ActionResult Category(int id)
+        public ActionResult Index()
         {
-
+            
+             var products = _context.Products
+                .Include(p => p.User)
+                .Include(c => c.ProductCategory)
+                .ToList();
+            
+            var pictures = _context.PIctureInfos.Where(i => i.OrderNumber == 0).ToList();
+            var users = _context.Users.ToList();
             var userId = User.Identity.GetUserId();
-            var productInCategory = _context.Products.Include(p => p.User).Where(p => p.ProductCategoryId == id).ToList();
-            var picturesOfCategory = _context.PIctureInfos.Where(p => p.Product.ProductCategoryId == id && p.OrderNumber == 0).ToList();
             var likesOfUser = _context.Likes.Where(l => l.LikerId == userId).ToList().ToLookup(l => l.ProductLikedId);
 
-            var viewModel = new CategoryViewModel
+
+            var allProductsPictures = new HomePageViewModel
             {
-                Products = productInCategory,
-                Pictures = picturesOfCategory,
-                Likes = likesOfUser
+                Product = products,
+                Picture = pictures,
+                Users = users,
+                Likes = likesOfUser,
+                CurrentCategoryTitle = "All products"
             };
 
-            return View(viewModel);
+            return View(allProductsPictures);
+        }
+
+        public ActionResult Category(int id)
+        {
+            
+            var  products = _context.Products
+                    .Include(p => p.User)
+                    .Include(c => c.ProductCategory)
+                    .Where(c => c.ProductCategoryId == id)
+                    .ToList();
+
+            var pictures = _context.PIctureInfos.Where(i => i.OrderNumber == 0).ToList();
+            var users = _context.Users.ToList();
+            var userId = User.Identity.GetUserId();
+            var likesOfUser = _context.Likes.Where(l => l.LikerId == userId).ToList().ToLookup(l => l.ProductLikedId);
+
+            var allProductsPictures = new HomePageViewModel
+            {
+                Product = products,
+                Picture = pictures,
+                Users = users,
+                Likes = likesOfUser,
+                CurrentCategoryTitle = _context.ProductCategories.Single(c => c.Id == id).Name
+
+        };
+
+            return View("index",allProductsPictures);
         }
 
         [HttpPost]
@@ -234,7 +269,7 @@ namespace Vintagerie.Controllers
         }
 
 
-        public ActionResult Index(string query = null)
+        /*public ActionResult Index(string query = null)
         {
 
             var allProducts = _context.Products.Include(p => p.User);
@@ -258,6 +293,6 @@ namespace Vintagerie.Controllers
                 
             };
             return View(products);
-        }
+        }*/
     }
 }

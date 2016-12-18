@@ -1,19 +1,83 @@
-﻿@model Vintagerie.ViewModels.ProductsViewModel
+﻿@model Vintagerie.ViewModels.HomePageViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Model.CurrentCategoryTitle;
 }
 
 
 <div class="in-side">
-    @using (Html.BeginForm("Search", "Products",FormMethod.Post))
-    {
-        @Html.TextBoxFor(m => m.SearchTerm)
-        <button type="submit">Search</button>
-    }
+    @* @using (Html.BeginForm("Search", "Products", FormMethod.Post))
+        {
+            @Html.TextBoxFor(m => m.SearchTerm)
+            <button type="submit">Search</button>
+        }*@
 
-    <h2>Index</h2>
-    @foreach (var pro in Model.Products)
-    {
-        @pro.ProductName
-    }
+
+    <section class="bestProducts">
+        <div class="flowers">
+            <figure>
+                <figcaption>@Model.CurrentCategoryTitle</figcaption>
+                <img src="~/Content/images/tree.png" alt="Most Liked Products" />
+            </figure>
+        </div>
+
+        <div class="row myContainer">
+
+            @foreach (var product in Model.Product)
+            {
+
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="card">
+                        <figure class="mainImg">
+                            <img src="@Model.Picture.Single(s => s.ProductId == product.Id).Path" alt="" />
+                        </figure>
+                        <div class="filterMe"></div>
+                        <div class="storeNameLoves">
+                            <a href="@Url.Action("SingleStore", "Store", new {id = @product.User.Slug}, null)">
+                                <div class="storeName">
+                                    @product.User.Name
+                                </div>
+                            </a>
+                            <div class="loves row">
+                                <div class="productNameDiv col-xs-9">
+
+                                    <div class="productName">
+                                        <a href="#">
+                                            @product.ProductName
+                                        </a>
+                                    </div>
+
+                                </div>
+
+
+                                @if (Model.Likes.Contains(product.Id))
+                                {
+                                    <div class="lovesCount js-likeDis col-xs-3 fa fa-thumbs-up" data-productId="@product.Id">
+                                        <span class="counter">
+                                            @product.ProductLikes
+                                        </span>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div class="lovesCount js-likeDis col-xs-3 fa fa-thumbs-o-up" data-productId="@product.Id">
+                                        <span class="counter">
+                                            @product.ProductLikes
+                                        </span>
+                                    </div>
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+
+        </div>
+
+
+    </section>
 </div>

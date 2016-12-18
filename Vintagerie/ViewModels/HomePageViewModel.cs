@@ -12,6 +12,7 @@ namespace Vintagerie.ViewModels
         public ILookup<int, LikeUserToProduct> Likes { get; set; }
         public ILookup<string, LovesUserToStore> Loves { get; set; }
         public IEnumerable<ApplicationUser> TopUsers { get; set; }
+        public string CurrentCategoryTitle { get; set; }
     }
 
     

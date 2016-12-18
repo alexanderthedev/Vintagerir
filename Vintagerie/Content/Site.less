@@ -210,6 +210,20 @@ a {
 .flowers {
     text-align: center;
     padding: 30px 0px;
+
+    figure {
+        figcaption {
+        font-size: 30px;
+        color: @purple;
+        font-family: @pacifico;
+        max-width: 306px;
+        margin: 0 auto;
+        margin-bottom: -10px;
+        }
+
+    }
+
+    
 }
 
 .byCateogories {
@@ -426,6 +440,12 @@ footer {
         color: @secondColor;
         border-radius: 5px;
         margin-top: 40px;
+        transition: .2s all ease-in-out;
+
+        &:hover {
+            background-color: @secondColor;
+            color: #fff;
+        }
 
         &:focus {
             outline: 0;
@@ -435,6 +455,7 @@ footer {
 
 .in-side {
     margin-top: 150px;
+    margin-bottom: 100px;
 }
 
 .notifications a {
