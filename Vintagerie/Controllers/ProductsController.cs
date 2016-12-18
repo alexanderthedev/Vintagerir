@@ -269,30 +269,22 @@ namespace Vintagerie.Controllers
         }
 
 
-        /*public ActionResult Index(string query = null)
+        public ActionResult SingleProduct(int id)
         {
+            var userId = User.Identity.GetUserId();
+            var product = _context.Products.Include(i => i.User).Single(s => s.Id == id);
+            var likeThis = _context.Likes.Select(l => l.LikerId).Contains(userId);
+            var loveThisStre = _context.Loves.Select(l => l.LovedId).Contains(userId);
+            var picturesOfProduct = _context.PIctureInfos;
 
-            var allProducts = _context.Products.Include(p => p.User);
-            var allPictures = _context.PIctureInfos;
-            var myLikes = _context.Likes;
-
-            if (!String.IsNullOrWhiteSpace(query))
+            var viewModel = new SingleProductViewModel
             {
-                allProducts = allProducts
-                    .Where(g => g.ProductName.Contains(query) ||
-                                g.ProductCategory.Name.Contains(query) ||
-                                g.ProductDescription.Contains(query));
-            }
-
-            var products = new ProductsViewModel
-            {
-                Products=  allProducts,
-                Pictures = allPictures,
-                SearchTerm = query,
-                MyLikes = myLikes
-                
+                Product = product,
+                LikeThisProduct = likeThis,
+                LoveThisShop = loveThisStre
             };
-            return View(products);
-        }*/
+
+            return View(viewModel);
+        }
     }
 }
