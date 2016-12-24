@@ -269,10 +269,10 @@ namespace Vintagerie.Controllers
         }
 
 
-        public ActionResult SingleProduct(int id)
+        public ActionResult SingleProduct(string slug)
         {
             var userId = User.Identity.GetUserId();
-            var product = _context.Products.Include(i => i.User).Single(s => s.Id == id);
+            var product = _context.Products.Include(i => i.User).Single(s => s.Slug == slug);
             var likeThis = _context.Likes.Select(l => l.LikerId).Contains(userId);
             var loveThisStre = _context.Loves.Select(l => l.LovedId).Contains(userId);
             var picturesOfProduct = _context.PIctureInfos;

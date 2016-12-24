@@ -26,8 +26,8 @@ namespace Vintagerie.Models
         public string PhotoProFileName { get; set; }
 
         public string Slug { get; set; }
-        public ICollection<UserNotification> UserNotifications { get; set; }
 
+        public ICollection<UserNotification> UserNotifications { get; set; }
 
 
         public ApplicationUser()

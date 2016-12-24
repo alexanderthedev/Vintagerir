@@ -313,6 +313,10 @@
     <Compile Include="Migrations\201612022324293_AddNotificationCreator.Designer.cs">
       <DependentUpon>201612022324293_AddNotificationCreator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612241939370_AddSlugToProducts.cs" />
+    <Compile Include="Migrations\201612241939370_AddSlugToProducts.Designer.cs">
+      <DependentUpon>201612241939370_AddSlugToProducts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -542,6 +546,12 @@
     <EmbeddedResource Include="Migrations\201612022324293_AddNotificationCreator.resx">
       <DependentUpon>201612022324293_AddNotificationCreator.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612241939370_AddSlugToProducts.resx">
+      <DependentUpon>201612241939370_AddSlugToProducts.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
