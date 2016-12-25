@@ -1,56 +1,92 @@
-﻿@using Microsoft.AspNet.Identity
-@model Vintagerie.ViewModels.AllStoresViewModel
+﻿@model Vintagerie.ViewModels.HomePageViewModel
 @{
     ViewBag.Title = "All stores";
 }
 
-<h2>AllStores</h2>
-<ul>
-    @foreach (var store in Model.Stores)
-    {
+<div class="in-side">
+    <section class="bestShops">
+        <div class="flowers">
+            <figure>
+                <figcaption>@ViewBag.Title</figcaption>
+                <img src="~/Content/images/tree.png" alt="@ViewBag.Title" />
+            </figure>
+        </div>
 
-        <li>
-            name : @store.Name @Html.ActionLink("Contact Me","MessageRoom","Messages",new { id = @store.Id}, null)  <br/>
-            Loves :<span class="uLoves">@store.Loves</span><br>
+        <div class="row myContainer">
 
-            @{ var isLoved = Model.Loves.Any(a => a.LovedId == @store.Id) ? "Loved" : "Love me?";  }
+            @foreach (var user in Model.TopUsers)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <div class="card">
+                        <figure class="mainImg">
+                            <img src="@user.PhotoProFileName" alt="@user.Name" />
+                        </figure>
+                        <div class="filterMe"></div>
+                        <div class="storeNameLoves">
+                            <a href="#">
+                                <div class="storeName">
+                                    @user.Name
+                                </div>
+                            </a>
+                            <div class="loves row">
+                                <div class="productName col-xs-9">
+                                    <a href="#">
+                                        @user.CountryName
+                                    </a>
+                                </div>
+                                @if (Model.Loves.Contains(user.Id))
+                            {
+                                    <div class="lovesCount fa fa-heart col-xs-3 js-loveDis" data-uId="@user.Id">
+                                        <span class="counter">
+                                            @user.Loves
+                                        </span>
+                                    </div>
+                            }
+                            else
+                            {
+                                    <div class="lovesCount fa fa-heart-o col-xs-3 js-loveDis" data-uId="@user.Id">
+                                        <span class="counter">
+                                            @user.Loves
+                                        </span>
+                                    </div>
+                            }
 
-            <button data-uId="@store.Id" class="js-loveDis">@isLoved</button>
-        </li>
 
-        <hr />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        }
 
-    }
-</ul>
+        </div>
+    </section>
+
+</div>
+
 
 @section scripts
 {
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $(".js-loveDis").click(function (e) {
-                
                 var button = $(e.target);
                 $.post("/api/loves", { Uid: button.attr("data-uId") })
                     .done(function () {
-                        console.log("done");
-                        var takeVal = button.parent().find(".uLoves").text();
-                        if (button.text() === "Loved") {
-                            button.text("Love me?");
-                            parseInt(takeVal);
-                            takeVal--;
-                            button.parent().find(".uLoves").text(takeVal);
+                        var num;
+                        if (button.hasClass("fa-heart-o")) {
+                            button.removeClass("fa-heart-o").addClass("fa-heart");
+                            num = parseInt(button.find("span").text());
+                            button.find("span").text(num + 1);
                         } else {
-                            button.text("Loved");
-                            parseInt(takeVal);
-                            takeVal++;
-                            button.parent().find(".uLoves").text(takeVal);
+                            button.removeClass("fa-heart").addClass("fa-heart-o");
+                            num = parseInt(button.find("span").text());
+                            button.find("span").text(num - 1);
                         }
                     })
                     .fail(function () {
-                        window.Location = "/Account/Register";
+                        alert("error");
                     });
-
             });
-        })
+        });
     </script>
 }

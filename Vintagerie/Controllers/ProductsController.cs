@@ -39,6 +39,23 @@ namespace Vintagerie.Controllers
 
             if (productViewModel.Product.Id == 0)
             {
+                var nameToLower = productViewModel.Product.ProductName.ToLower();
+                var nameWithSpaces = nameToLower.Replace(" ", "-");
+                var findInDb = _context.Products.Select(p => p.Slug).Contains(nameWithSpaces);
+
+                var i = 1;
+                while (findInDb)
+                {
+                    var newSlug = nameWithSpaces + "-" + i;
+                    findInDb = _context.Products.Select(p => p.Slug).Contains(newSlug);
+                    if (!findInDb)
+                    {
+                        nameWithSpaces = newSlug;
+                    }    
+                    i++;
+                }
+
+
                 var product = new Product
                 {
                     UserId = User.Identity.GetUserId(),
@@ -48,6 +65,7 @@ namespace Vintagerie.Controllers
                     ProductPrice = productViewModel.Product.ProductPrice,
                     ProductLikes = 0,
                     ProductCategoryId = productViewModel.Product.ProductCategoryId,
+                    Slug = nameWithSpaces
 
                 };
                 _context.Products.Add(product);

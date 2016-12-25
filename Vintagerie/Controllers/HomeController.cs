@@ -47,17 +47,22 @@ namespace Vintagerie.Controllers
 
         public ActionResult AllStores()
         {
-            var currentUserId = User.Identity.GetUserId();
-            var allUsers = _context.Users.ToList();
-            var allLoves = _context.Loves.Where(l => l.LoverUserId == currentUserId).ToList();
+            
 
-            var allStoresLoves = new AllStoresViewModel
+            var userId = User.Identity.GetUserId();
+            
+            var loveOfUser = _context.Loves.Where(l => l.LoverUserId == userId).ToList().ToLookup(l => l.LovedId);
+            var allUsers = _context.Users.OrderByDescending(o => o.Loves).ToList();
+
+
+            var allProductsPictures = new HomePageViewModel
             {
-                Stores = allUsers,
-                Loves = allLoves
-            };
+          
+                Loves = loveOfUser,
+                TopUsers = allUsers
 
-            return View(allStoresLoves);
+            };
+            return View(allProductsPictures);
         }
 
         public ActionResult About()

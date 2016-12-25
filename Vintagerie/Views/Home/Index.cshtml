@@ -124,16 +124,12 @@
                         </a>
                         <div class="loves row">
                             <div class="productNameDiv col-xs-9">
-
                                 <div class="productName">
                                     <a href="@Url.Action("SingleProduct","Products", new { slug = product.Slug })">
                                         @product.ProductName
                                     </a>
                                 </div>
-
                             </div>
-
-
                             @if (Model.Likes.Contains(product.Id))
                             {
                                 <div class="lovesCount js-likeDis col-xs-3 fa fa-thumbs-up" data-productId="@product.Id">
