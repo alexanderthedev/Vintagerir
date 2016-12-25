@@ -293,13 +293,14 @@ namespace Vintagerie.Controllers
             var product = _context.Products.Include(i => i.User).Single(s => s.Slug == slug);
             var likeThis = _context.Likes.Select(l => l.LikerId).Contains(userId);
             var loveThisStre = _context.Loves.Select(l => l.LovedId).Contains(userId);
-            var picturesOfProduct = _context.PIctureInfos;
+            var picturesOfProduct = _context.PIctureInfos.Where(p => p.Product.Slug == slug && p.UserId == userId).ToList();
 
             var viewModel = new SingleProductViewModel
             {
                 Product = product,
                 LikeThisProduct = likeThis,
-                LoveThisShop = loveThisStre
+                LoveThisShop = loveThisStre,
+                Pictures = picturesOfProduct
             };
 
             return View(viewModel);

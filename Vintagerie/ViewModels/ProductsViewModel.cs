@@ -8,8 +8,7 @@ namespace Vintagerie.ViewModels
         public IEnumerable<Product> Products { get; set; }
         public IEnumerable<PictureInfo> Pictures { get; set; }
         public string SearchTerm { get; set; }
-        public IEnumerable<LikeUserToProduct> MyLikes { get; set; } 
-
+        public IEnumerable<LikeUserToProduct> MyLikes { get; set; }
     }
 
 }

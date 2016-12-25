@@ -1,4 +1,5 @@
-﻿using Vintagerie.Models;
+﻿using System.Collections.Generic;
+using Vintagerie.Models;
 
 namespace Vintagerie.ViewModels
 {
@@ -7,5 +8,7 @@ namespace Vintagerie.ViewModels
         public Product Product { get; set; }
         public bool LikeThisProduct { get; set; }
         public bool LoveThisShop { get; set; }
+        public IEnumerable<PictureInfo> Pictures { get; set; }
+
     }
 }

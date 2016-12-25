@@ -1,4 +1,5 @@
-﻿@model Vintagerie.ViewModels.SingleProductViewModel
+﻿@using Microsoft.Ajax.Utilities
+@model Vintagerie.ViewModels.SingleProductViewModel
 @{
     ViewBag.Title = "SingleProduct";
 }
@@ -8,6 +9,55 @@
 
 <div class="in-side">
 
-    <h1>@Model.Product.ProductName</h1>
+    <div class="shopInHeader myContainer">
+        <div class="storeImg">
+            <figure>
+                <img src="@Model.Product.User.PhotoProFileName" alt="@Model.Product.User.Name" />
+            </figure>
+        </div>
+        <div class="storeNameLoveIt">
+            <h4>
+                @Model.Product.User.Name
+            </h4>
+            <div class="loveThisStore">
+                Love this store
+            </div>
+        </div>
+    </div>
+    <div class="productContainer">
+        <div class="row myContainer">
+            <div class="leftSideProduct col-sm-6">
+                <div class="likeProduct">like me</div>
+                <div class="gallery">
+                    <ul>
+                        @foreach (var img in Model.Pictures)
+                        {
+                            <li>@img.Path</li>
+                        }
+                    </ul>
+                </div>
+                <div class="productDescription">
+                    <p>@Model.Product.ProductDescription</p>
+                </div>
+            </div>
+            <div class="rightSideProduct col-sm-6">
+                <div class="productTitle">
+                    <h6>title</h6>
+                    <h1>@Model.Product.ProductName</h1>
+                </div>
+                <div class="productPrice">
+                    <h6>Price</h6>
+                    <p>@Model.Product.ProductPrice</p>
+                </div>
+                <div class="productLikes">
+                    <h6>Likes</h6>
+                    <p>@Model.Product.ProductLikes</p>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
 
 </div>
