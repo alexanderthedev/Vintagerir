@@ -441,3 +441,6 @@ label[for="RememberMe"] {
 label[for="RememberMe"] + a {
   margin-left: 50px;
 }
+.bx-wrapper img {
+  margin: 0 auto;
+}

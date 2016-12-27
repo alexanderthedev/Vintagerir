@@ -10,7 +10,6 @@
     <h2>MessageRoom</h2>
 
     <ul>
-      
             @foreach (var message in Model.ListOfMessages)
             {
                 <li>
@@ -30,7 +29,6 @@
             @Html.TextAreaFor(m => m.SingleMessage.Content)
         </div>
         @Html.HiddenFor(m => m.ReceiverId)
-        @Html.HiddenFor(m => m.SingleMessage.MessageRoomId)
 
         <button type="submit">send</button>
     }

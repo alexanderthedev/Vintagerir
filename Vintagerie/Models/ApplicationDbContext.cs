@@ -11,8 +11,6 @@ namespace Vintagerie.Models
 
         public DbSet<LikeUserToProduct> Likes { get; set; }
         public DbSet<LovesUserToStore> Loves { get; set; }
-
-        public DbSet<MessageRoom> MessageRooms { get; set; }
         public DbSet<Message> Messages { get; set; }
         
         public DbSet<Notification> Notifications { get; set; }

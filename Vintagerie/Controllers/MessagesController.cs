@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using Vintagerie.Models;
@@ -22,44 +23,22 @@ namespace Vintagerie.Controllers
         public ActionResult MyMessages()
         {
             var myId = User.Identity.GetUserId();
-            var myRooms = _context.MessageRooms
-                .Include("UserA")
-                .Include("UserB")
-                .Where(r => r.UserAId == myId || r.UserBId == myId)
-                .ToList();
+            
 
-            return View(myRooms);
+            return View();
         }
 
+        [Authorize]
         public ActionResult MessageRoom(string id)
         {
 
             var myId = User.Identity.GetUserId();
 
-            var ourMessageRoom = 
-                _context.MessageRooms
-                .SingleOrDefault(r => (r.UserAId == myId || r.UserBId == myId) && (r.UserAId == id || r.UserBId == id));
-
-
-           
-            if (ourMessageRoom == null)
-            {
-                
-                var createMessageRoom = new MessageRoom
-                {
-                    Id = Guid.NewGuid(),
-                    UserAId = myId,
-                    UserBId = id
-                };
-                _context.MessageRooms.Add(createMessageRoom);
-                _context.SaveChanges();
-            }
-
             var allMessage = _context.Messages
-                .Include("Sender")
-                .Include("Receiver")
-                .Where(m => m.MessageRoomId == ourMessageRoom.Id )
-                .OrderBy(m => m.TimeSent);
+                .Include(m => m.Receiver)
+                .Include(m => m.Sender)
+                .Where(m => (m.ReceiverId == id || m.SenderId == id)
+                            && (m.ReceiverId == myId || m.SenderId == myId)).ToList();
            
             var viewModel = new MessagesViewModel()
             {
@@ -76,17 +55,11 @@ namespace Vintagerie.Controllers
         public ActionResult SendMessage(MessagesViewModel message)
         {
             var myId = User.Identity.GetUserId();
-            var roomId =
-                _context.MessageRooms.Single(
-                    r =>
-                        (r.UserAId == myId || r.UserBId == myId) &&
-                        (r.UserAId == message.ReceiverId || r.UserBId == message.ReceiverId));
 
             var newMessage = new Message
             {
-                Id = Guid.NewGuid(),
+                Id =  Guid.NewGuid(),
                 Content = message.SingleMessage.Content,
-                MessageRoomId = roomId.Id,
                 SenderId = myId,
                 ReceiverId = message.ReceiverId,
                 TimeSent = DateTime.Now

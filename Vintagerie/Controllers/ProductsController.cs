@@ -96,9 +96,6 @@ namespace Vintagerie.Controllers
             return RedirectToAction("MyProducts");
         }
 
-
-
-
         public void AddImages(ProductFormViewModel productViewModel,Product product)
         {
             StringBuilder direCtorybuilder = new StringBuilder();
@@ -156,7 +153,6 @@ namespace Vintagerie.Controllers
 
             }
         }
-
        
         [Authorize]
         public ActionResult MyProducts()
@@ -177,8 +173,6 @@ namespace Vintagerie.Controllers
 
             return View(myProducts);
         }
-
-
     
         public ActionResult DeleteProduct(int id)
         {
@@ -196,7 +190,6 @@ namespace Vintagerie.Controllers
 
             return RedirectToAction("MyProducts");
         }
-
 
         public void DeleteFolder(Product product, ApplicationUser user)
         {
@@ -286,12 +279,11 @@ namespace Vintagerie.Controllers
 
         }
 
-
         public ActionResult SingleProduct(string slug)
         {
             var userId = User.Identity.GetUserId();
             var product = _context.Products.Include(i => i.User).Single(s => s.Slug == slug);
-            var likeThis = _context.Likes.Select(l => l.LikerId).Contains(userId);
+            var likeThis = _context.Likes.Include(l => l.ProductLiked).Where(l => l.ProductLiked.Slug == slug).Select(l => l.LikerId).Contains(userId);
             var loveThisStre = _context.Loves.Select(l => l.LovedId).Contains(userId);
             var picturesOfProduct = _context.PIctureInfos.Where(p => p.Product.Slug == slug).ToList();
 

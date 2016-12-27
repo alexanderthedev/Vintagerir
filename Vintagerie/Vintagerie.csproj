@@ -317,6 +317,14 @@
     <Compile Include="Migrations\201612241939370_AddSlugToProducts.Designer.cs">
       <DependentUpon>201612241939370_AddSlugToProducts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612252306002_RemoveRoomsFromMessages.cs" />
+    <Compile Include="Migrations\201612252306002_RemoveRoomsFromMessages.Designer.cs">
+      <DependentUpon>201612252306002_RemoveRoomsFromMessages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612252343591_test1.cs" />
+    <Compile Include="Migrations\201612252343591_test1.Designer.cs">
+      <DependentUpon>201612252343591_test1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -324,7 +332,6 @@
     <Compile Include="Models\LikeUserToProduct.cs" />
     <Compile Include="Models\LovesUserToStore.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MessageRoom.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\NotificationType.cs" />
@@ -371,6 +378,7 @@
     <Content Include="Content\images\topBar.jpg" />
     <Content Include="Content\images\toys.png" />
     <Content Include="Content\images\tree.png" />
+    <Content Include="Content\jquery.bxslider.css" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.less</DependentUpon>
     </Content>
@@ -402,6 +410,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.bxslider.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -548,6 +557,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612241939370_AddSlugToProducts.resx">
       <DependentUpon>201612241939370_AddSlugToProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612252306002_RemoveRoomsFromMessages.resx">
+      <DependentUpon>201612252306002_RemoveRoomsFromMessages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612252343591_test1.resx">
+      <DependentUpon>201612252343591_test1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -12,6 +12,7 @@ namespace Vintagerie
                         "~/Scripts/underscore-min.js",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/respond.js",
+                        "~/Scripts/jquery.bxslider.min.js",
                         "~/Scripts/main.js"
                         ));
 
@@ -26,6 +27,7 @@ namespace Vintagerie
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/font-awesome.min.css",
+                      "~/Content/jquery.bxslider.css",
                       "~/Content/site.min.css"));
         }
     }
