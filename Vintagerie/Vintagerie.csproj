@@ -325,6 +325,10 @@
     <Compile Include="Migrations\201612252343591_test1.Designer.cs">
       <DependentUpon>201612252343591_test1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612282115527_IcollectionOfproducts.cs" />
+    <Compile Include="Migrations\201612282115527_IcollectionOfproducts.Designer.cs">
+      <DependentUpon>201612282115527_IcollectionOfproducts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -563,6 +567,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612252343591_test1.resx">
       <DependentUpon>201612252343591_test1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612282115527_IcollectionOfproducts.resx">
+      <DependentUpon>201612282115527_IcollectionOfproducts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

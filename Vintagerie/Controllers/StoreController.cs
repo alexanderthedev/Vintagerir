@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 using System.Web.Mvc;
 using Vintagerie.Models;
 
@@ -16,7 +17,7 @@ namespace Vintagerie.Controllers
         // GET: Store
         public ActionResult SingleStore(string id)
         {
-            var findUser = Context.Users.Single(u => u.Slug == id);
+            var findUser = Context.Users.Include(u => u.Products).Single(u => u.Slug == id);
             
 
             return View(findUser);

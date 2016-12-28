@@ -27,12 +27,15 @@ namespace Vintagerie.Models
 
         public string Slug { get; set; }
 
+        public ICollection<Product> Products { get; set; }
+
         public ICollection<UserNotification> UserNotifications { get; set; }
 
 
         public ApplicationUser()
         {
             UserNotifications = new Collection<UserNotification>();
+            Products = new Collection<Product>();
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

@@ -14,5 +14,19 @@
     <div class="Country">
         @Model.CountryName
     </div>
+
+    <div class="products">
+        <ul>
+            @foreach (var product in Model.Products)
+            {
+                <li>@product.ProductName
+                    @foreach (var pPics in product.Pictures)
+                    {
+                    @pPics.Path
+                    }
+                </li>
+            }
+        </ul>
+    </div>
 </div>
 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Vintagerie.Models
@@ -32,5 +34,11 @@ namespace Vintagerie.Models
 
         public string Slug { get; set; }
 
+        public ICollection<PictureInfo> Pictures { get; set; }
+
+        public Product()
+        {
+            Pictures =  new Collection<PictureInfo>();
+        } 
     }
 }

@@ -182,9 +182,11 @@
                     <div class="filterMe"></div>
                     <div class="storeNameLoves">
                         <a href="#">
-                            <div class="storeName">
-                                @user.Name
-                            </div>
+                            <a href="@Url.Action("SingleStore", "Store", new {id = user.Slug}, null)">
+                                <div class="storeName">
+                                    @user.Name
+                                </div>
+                            </a>
                         </a>
                         <div class="loves row">
                             <div class="productName col-xs-9">
